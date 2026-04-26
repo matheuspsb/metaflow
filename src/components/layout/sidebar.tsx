@@ -34,7 +34,8 @@ export function SidebarLayout({ children }: { children: React.ReactNode }) {
             alt="MetaFlow"
             width={32}
             height={32}
-            className="shrink-0 rounded-lg"
+            style={{ width: 32, height: 32 }}
+            className="rounded-lg"
           />
           <span className="font-display text-fg-primary text-lg font-bold tracking-tight">
             MetaFlow
