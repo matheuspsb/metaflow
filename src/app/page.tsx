@@ -22,7 +22,6 @@ export default function Home() {
         >
           Login
         </Link>
-        export default function GoalsCard() {}
       </div>
     </main>
   )
