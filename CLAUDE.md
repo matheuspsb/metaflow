@@ -103,6 +103,7 @@ project-root/
 ## 🧠 Como pedir ajuda
 
 Quando algo for ambíguo, **pergunte antes de assumir**. Exemplos:
+
 - "Esse modal deve usar `rounded-xl` ou `rounded-2xl`?"
 - "Esse estado de erro deve usar `text-danger` ou só um tom mais apagado?"
 - "Devo criar uma variante nova do Button ou usar uma das 2 existentes?"
@@ -114,11 +115,13 @@ Quando algo for ambíguo, **pergunte antes de assumir**. Exemplos:
 Se este for um projeto Next.js zerado, garanta que:
 
 1. `app/globals.css` tem **apenas** esta linha no topo (Tailwind v4 importa tudo via design-tokens):
+
    ```css
-   @import "../styles/design-tokens.css";
+   @import '../styles/design-tokens.css';
    ```
 
 2. `package.json` tem:
+
    ```json
    {
      "dependencies": {
@@ -135,15 +138,16 @@ Se este for um projeto Next.js zerado, garanta que:
    ```
 
 3. `postcss.config.mjs`:
+
    ```js
    export default {
-     plugins: { "@tailwindcss/postcss": {} },
-   };
+     plugins: { '@tailwindcss/postcss': {} },
+   }
    ```
 
 4. Fonte Inter carregada em `app/layout.tsx`:
    ```tsx
-   import { Inter } from "next/font/google";
-   const inter = Inter({ subsets: ["latin"] });
+   import { Inter } from 'next/font/google'
+   const inter = Inter({ subsets: ['latin'] })
    // <html className={inter.className}>
    ```

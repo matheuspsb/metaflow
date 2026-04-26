@@ -9,85 +9,85 @@
    bg-bg-base, text-fg-primary, border-border-subtle, etc.
    ============================================================ */
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* ------------ BACKGROUNDS ------------ */
-  --color-bg-base: #0A0A0F;          /* fundo principal da página */
-  --color-bg-sidebar: #0D0D14;        /* sidebar */
-  --color-bg-card: #13131C;           /* cards principais */
-  --color-bg-card-elevated: #161622;  /* cards com leve elevação */
-  --color-bg-card-hover: #1C1C28;     /* hover/active de cards */
-  --color-bg-input: #1F1F2B;          /* search bar, inputs */
-  --color-bg-tag: #252533;            /* tags Work/Health/Personal */
+  --color-bg-base: #0a0a0f; /* fundo principal da página */
+  --color-bg-sidebar: #0d0d14; /* sidebar */
+  --color-bg-card: #13131c; /* cards principais */
+  --color-bg-card-elevated: #161622; /* cards com leve elevação */
+  --color-bg-card-hover: #1c1c28; /* hover/active de cards */
+  --color-bg-input: #1f1f2b; /* search bar, inputs */
+  --color-bg-tag: #252533; /* tags Work/Health/Personal */
 
   /* ------------ BRAND / DEEP PURPLE ------------ */
-  --color-brand-50:  #F5F3FF;
-  --color-brand-100: #EDE9FE;
-  --color-brand-200: #DDD6FE;
-  --color-brand-300: #C4B5FD;
-  --color-brand-400: #A78BFA;
-  --color-brand-500: #6C4CF1;   /* cor primária */
-  --color-brand-600: #5A3EEA;
-  --color-brand-700: #4B32C3;
-  --color-brand-800: #3B279A;
-  --color-brand-900: #2C1D72;
-  --color-brand-950: #1A1045;
+  --color-brand-50: #f5f3ff;
+  --color-brand-100: #ede9fe;
+  --color-brand-200: #ddd6fe;
+  --color-brand-300: #c4b5fd;
+  --color-brand-400: #a78bfa;
+  --color-brand-500: #6c4cf1; /* cor primária */
+  --color-brand-600: #5a3eea;
+  --color-brand-700: #4b32c3;
+  --color-brand-800: #3b279a;
+  --color-brand-900: #2c1d72;
+  --color-brand-950: #1a1045;
 
   /* Alias semântico */
-  --color-primary:       #6C4CF1;
-  --color-primary-hover: #5A3EEA;
-  --color-primary-start: #7B5CFF; /* gradient start */
-  --color-primary-end:   #5A3EEA; /* gradient end   */
-  --color-primary-fg:    #FFFFFF;
+  --color-primary: #6c4cf1;
+  --color-primary-hover: #5a3eea;
+  --color-primary-start: #7b5cff; /* gradient start */
+  --color-primary-end: #5a3eea; /* gradient end   */
+  --color-primary-fg: #ffffff;
 
   /* Accent secundário (indigo p/ gradients) */
-  --color-accent-indigo: #6366F1;
-  --color-accent-fuchsia: #A855F7;
+  --color-accent-indigo: #6366f1;
+  --color-accent-fuchsia: #a855f7;
 
   /* ------------ FOREGROUND / TEXT ------------ */
-  --color-fg-primary: #F4F4F5;     /* títulos, valores */
-  --color-fg-secondary: #D4D4D8;   /* texto principal */
-  --color-fg-muted: #A1A1AA;       /* labels, meta */
-  --color-fg-subtle: #71717A;      /* hint, placeholder */
-  --color-fg-disabled: #52525B;    /* dias fora do mês */
+  --color-fg-primary: #f4f4f5; /* títulos, valores */
+  --color-fg-secondary: #d4d4d8; /* texto principal */
+  --color-fg-muted: #a1a1aa; /* labels, meta */
+  --color-fg-subtle: #71717a; /* hint, placeholder */
+  --color-fg-disabled: #52525b; /* dias fora do mês */
 
   /* ------------ BORDERS ------------ */
   --color-border-subtle: rgba(255, 255, 255, 0.06);
-  --color-border-default: rgba(255, 255, 255, 0.10);
+  --color-border-default: rgba(255, 255, 255, 0.1);
   --color-border-strong: rgba(255, 255, 255, 0.16);
   --color-border-brand: rgba(139, 92, 246, 0.35);
 
   /* ------------ SEMANTIC / FUNCIONAL ------------ */
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-error:   #EF4444;
-  --color-danger:  #EF4444;
-  --color-info:    #38BDF8;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-danger: #ef4444;
+  --color-info: #38bdf8;
 
   /* ------------ TYPOGRAPHY ------------ */
-  --font-sans: var(--font-geist-sans), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-display: var(--font-montserrat), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /* Font sizes (escala fluida) */
-  --text-xs: 0.75rem;     /* 12px — tags, labels */
-  --text-sm: 0.875rem;    /* 14px — body small */
+  --text-xs: 0.75rem; /* 12px — tags, labels */
+  --text-sm: 0.875rem; /* 14px — body small */
   --text-base: 0.9375rem; /* 15px — body default */
-  --text-md: 1rem;        /* 16px — list items */
-  --text-lg: 1.125rem;    /* 18px — card titles */
-  --text-xl: 1.25rem;     /* 20px — section titles */
-  --text-2xl: 1.5rem;     /* 24px — counters */
-  --text-3xl: 1.875rem;   /* 30px — page title */
-  --text-4xl: 2.25rem;    /* 36px — hero numbers (72%, 12 days) */
+  --text-md: 1rem; /* 16px — list items */
+  --text-lg: 1.125rem; /* 18px — card titles */
+  --text-xl: 1.25rem; /* 20px — section titles */
+  --text-2xl: 1.5rem; /* 24px — counters */
+  --text-3xl: 1.875rem; /* 30px — page title */
+  --text-4xl: 2.25rem; /* 36px — hero numbers (72%, 12 days) */
 
   /* ------------ RADIUS ------------ */
-  --radius-xs: 6px;    /* tags */
-  --radius-sm: 8px;    /* tags grandes */
-  --radius-md: 10px;   /* botões pequenos */
-  --radius-lg: 12px;   /* botões, inputs */
-  --radius-xl: 16px;   /* cards principais */
-  --radius-2xl: 20px;  /* hero cards */
+  --radius-xs: 6px; /* tags */
+  --radius-sm: 8px; /* tags grandes */
+  --radius-md: 10px; /* botões pequenos */
+  --radius-lg: 12px; /* botões, inputs */
+  --radius-xl: 16px; /* cards principais */
+  --radius-2xl: 20px; /* hero cards */
   --radius-full: 9999px;
 
   /* ------------ SHADOWS / GLOWS ------------ */
@@ -97,7 +97,7 @@
   --shadow-brand-glow-strong: 0 0 40px rgba(139, 92, 246, 0.5);
 
   /* ------------ SPACING (extras) ------------ */
-  --spacing-card: 1.5rem;        /* padding interno padrão de card: 24px */
+  --spacing-card: 1.5rem; /* padding interno padrão de card: 24px */
   --spacing-card-tight: 1.25rem; /* 20px */
 
   /* ------------ Z-INDEX ------------ */
@@ -122,52 +122,32 @@
   }
 
   .bg-gradient-brand-soft {
-    background: linear-gradient(
-      135deg,
-      rgba(139, 92, 246, 0.15) 0%,
-      rgba(139, 92, 246, 0.05) 100%
-    );
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
   }
 
   .bg-gradient-upgrade {
-    background: linear-gradient(
-      135deg,
-      var(--color-brand-900) 0%,
-      var(--color-brand-700) 100%
-    );
+    background: linear-gradient(135deg, var(--color-brand-900) 0%, var(--color-brand-700) 100%);
   }
 
   .bg-gradient-hero-quote {
     background: linear-gradient(
       180deg,
-      #1E1B4B 0%,
+      #1e1b4b 0%,
       var(--color-brand-700) 50%,
       var(--color-accent-fuchsia) 100%
     );
   }
 
   .bg-gradient-sidebar-active {
-    background: linear-gradient(
-      to right,
-      #6347E8,
-      #3E28B8
-    );
+    background: linear-gradient(to right, #6347e8, #3e28b8);
   }
 
   .bg-gradient-sidebar-hover {
-    background: linear-gradient(
-      to right,
-      #1C1340,
-      #0F0A22
-    );
+    background: linear-gradient(to right, #1c1340, #0f0a22);
   }
 
   .bg-gradient-card-active {
-    background: linear-gradient(
-      135deg,
-      rgba(139, 92, 246, 0.20) 0%,
-      rgba(139, 92, 246, 0.04) 100%
-    );
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.04) 100%);
   }
 
   /* Conic gradient para o donut de progresso */

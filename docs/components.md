@@ -68,7 +68,7 @@
 ## 5. Tag / Badge (Work, Health, Personal)
 
 ```tsx
-<span className="rounded-xs bg-bg-tag text-fg-muted inline-flex items-center px-2 py-0.5 text-xs font-medium">
+<span className="bg-bg-tag text-fg-muted inline-flex items-center rounded-xs px-2 py-0.5 text-xs font-medium">
   Work
 </span>
 ```
@@ -238,7 +238,7 @@
 ```tsx
 <div className="bg-gradient-hero-quote relative flex min-h-40 items-center overflow-hidden rounded-xl p-8">
   {/* Imagem decorativa à direita (opcional) */}
-  <div className="absolute bottom-0 right-0 top-0 w-1/2 opacity-60">
+  <div className="absolute top-0 right-0 bottom-0 w-1/2 opacity-60">
     {/* <Image src="/mountains.png" ... /> */}
   </div>
 

@@ -8,14 +8,14 @@
  *
  * Tamanhos: sm | md | lg
  */
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost";
-  size?: "sm" | "md" | "lg";
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-  children: ReactNode;
+  variant?: 'primary' | 'secondary' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  leftIcon?: ReactNode
+  rightIcon?: ReactNode
+  children: ReactNode
 }
 
 const variantStyles: Record<string, string> = {
@@ -31,40 +31,31 @@ const variantStyles: Record<string, string> = {
     text-fg-muted
     hover:bg-bg-card-hover hover:text-fg-primary
   `,
-};
+}
 
 const sizeStyles: Record<string, string> = {
-  sm: "px-3 py-1.5 text-xs rounded-md gap-1.5",
-  md: "px-4 py-2 text-sm rounded-lg gap-2",
-  lg: "px-5 py-2.5 text-base rounded-lg gap-2",
-};
+  sm: 'px-3 py-1.5 text-xs rounded-md gap-1.5',
+  md: 'px-4 py-2 text-sm rounded-lg gap-2',
+  lg: 'px-5 py-2.5 text-base rounded-lg gap-2',
+}
 
 export function Button({
-  variant = "primary",
-  size = "md",
+  variant = 'primary',
+  size = 'md',
   leftIcon,
   rightIcon,
   children,
-  className = "",
+  className = '',
   ...rest
 }: ButtonProps) {
   return (
     <button
-      className={`
-        inline-flex items-center justify-center
-        font-medium
-        transition-all duration-200
-        active:scale-[0.98]
-        disabled:opacity-50 disabled:cursor-not-allowed
-        ${variantStyles[variant]}
-        ${sizeStyles[size]}
-        ${className}
-      `}
+      className={`inline-flex items-center justify-center font-medium transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 ${variantStyles[variant]} ${sizeStyles[size]} ${className} `}
       {...rest}
     >
       {leftIcon}
       {children}
       {rightIcon}
     </button>
-  );
+  )
 }

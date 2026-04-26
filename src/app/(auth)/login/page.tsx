@@ -6,10 +6,10 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="w-full max-w-sm rounded-xl border border-border-default bg-bg-card p-8 shadow-sm">
+    <div className="border-border-default bg-bg-card w-full max-w-sm rounded-xl border p-8 shadow-sm">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-fg-primary">Entrar</h1>
-        <p className="mt-1 text-sm text-fg-muted">Acesse sua conta MetaFlow</p>
+        <h1 className="text-fg-primary text-2xl font-bold tracking-tight">Entrar</h1>
+        <p className="text-fg-muted mt-1 text-sm">Acesse sua conta MetaFlow</p>
       </div>
       {/* TODO: Add login form */}
     </div>

@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check": "echo '🔍 Verificando TypeScript...' && tsc --noEmit && echo '🔎 Verificando ESLint...' && eslint . && echo '✅ Tudo certo, sem erros!'",
+    "fix": "echo '🔧 Corrigindo lint...' && eslint . --fix && echo '✨ Formatando código...' && prettier --write . && echo '✅ Pronto! Código limpo e formatado.'"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
