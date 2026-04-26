@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -11,7 +12,7 @@ export function Sidebar() {
   return (
     <aside className="border-border-subtle bg-bg-sidebar flex h-screen w-60 shrink-0 flex-col border-r">
       <div className="flex items-center gap-3 px-5 py-6">
-        <div className="bg-gradient-sidebar-active flex h-8 w-8 shrink-0 items-center justify-center rounded-lg" />
+        <Image src="/icon.png" alt="MetaFlow" width={32} height={32} className="shrink-0 rounded-lg" />
         <span className="font-display text-fg-primary text-lg font-bold tracking-tight">
           MetaFlow
         </span>
