@@ -1,45 +1,50 @@
-import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
-const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
-  {
-    variants: {
-      variant: {
-        default: 'bg-brand-500 text-white shadow-sm hover:bg-brand-600',
-        destructive: 'bg-red-600 text-white shadow-sm hover:bg-red-700',
-        outline: 'border border-border bg-bg-card text-text shadow-sm hover:bg-bg-popover',
-        secondary: 'bg-bg-surface text-text shadow-sm hover:bg-bg-card',
-        ghost: 'text-text hover:bg-bg-surface',
-        link: 'text-brand-500 underline-offset-4 hover:underline',
-      },
-      size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-11 rounded-md px-8 text-base',
-        icon: 'h-9 w-9',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
-  },
-)
-
-interface ButtonProps
-  extends React.ComponentProps<'button'>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  leftIcon?: ReactNode
+  rightIcon?: ReactNode
 }
 
-function Button({ className, variant, size, asChild = false, ...props }: ButtonProps) {
-  const Comp = asChild ? Slot : 'button'
+const variantStyles = {
+  primary: 'bg-gradient-brand text-white shadow-brand-glow hover:shadow-brand-glow-strong',
+  secondary:
+    'bg-bg-input text-fg-secondary border border-border-subtle hover:bg-bg-card-hover hover:text-fg-primary',
+  ghost: 'text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary',
+} as const
+
+const sizeStyles = {
+  sm: 'px-3 py-1.5 text-xs rounded-md gap-1.5',
+  md: 'px-4 py-2 text-sm rounded-lg gap-2',
+  lg: 'px-5 py-2.5 text-base rounded-lg gap-2',
+} as const
+
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  leftIcon,
+  rightIcon,
+  children,
+  className,
+  ...props
+}: ButtonProps) {
   return (
-    <Comp className={cn(buttonVariants({ variant, size, className }))} {...props} />
+    <button
+      className={cn(
+        'inline-flex items-center justify-center font-medium transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50',
+        variantStyles[variant],
+        sizeStyles[size],
+        className,
+      )}
+      {...props}
+    >
+      {leftIcon}
+      {children}
+      {rightIcon}
+    </button>
   )
 }
 
-export { Button, buttonVariants, type ButtonProps }
+export type { ButtonProps }

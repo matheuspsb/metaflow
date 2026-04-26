@@ -1,0 +1,209 @@
+/* ============================================================
+   FocusFlow Design Tokens — Tailwind CSS v4
+   ============================================================
+   Importe este arquivo no seu globals.css com:
+   @import "../styles/design-tokens.css";
+   
+   Todos os tokens estão expostos como variáveis Tailwind v4
+   via @theme, e podem ser usados como classes utilitárias:
+   bg-bg-base, text-fg-primary, border-border-subtle, etc.
+   ============================================================ */
+
+@import "tailwindcss";
+
+@theme {
+  /* ------------ BACKGROUNDS ------------ */
+  --color-bg-base: #0A0A0F;          /* fundo principal da página */
+  --color-bg-sidebar: #0D0D14;        /* sidebar */
+  --color-bg-card: #13131C;           /* cards principais */
+  --color-bg-card-elevated: #161622;  /* cards com leve elevação */
+  --color-bg-card-hover: #1C1C28;     /* hover/active de cards */
+  --color-bg-input: #1F1F2B;          /* search bar, inputs */
+  --color-bg-tag: #252533;            /* tags Work/Health/Personal */
+
+  /* ------------ BRAND / DEEP PURPLE ------------ */
+  --color-brand-50:  #F5F3FF;
+  --color-brand-100: #EDE9FE;
+  --color-brand-200: #DDD6FE;
+  --color-brand-300: #C4B5FD;
+  --color-brand-400: #A78BFA;
+  --color-brand-500: #6C4CF1;   /* cor primária */
+  --color-brand-600: #5A3EEA;
+  --color-brand-700: #4B32C3;
+  --color-brand-800: #3B279A;
+  --color-brand-900: #2C1D72;
+  --color-brand-950: #1A1045;
+
+  /* Alias semântico */
+  --color-primary:       #6C4CF1;
+  --color-primary-hover: #5A3EEA;
+  --color-primary-start: #7B5CFF; /* gradient start */
+  --color-primary-end:   #5A3EEA; /* gradient end   */
+  --color-primary-fg:    #FFFFFF;
+
+  /* Accent secundário (indigo p/ gradients) */
+  --color-accent-indigo: #6366F1;
+  --color-accent-fuchsia: #A855F7;
+
+  /* ------------ FOREGROUND / TEXT ------------ */
+  --color-fg-primary: #F4F4F5;     /* títulos, valores */
+  --color-fg-secondary: #D4D4D8;   /* texto principal */
+  --color-fg-muted: #A1A1AA;       /* labels, meta */
+  --color-fg-subtle: #71717A;      /* hint, placeholder */
+  --color-fg-disabled: #52525B;    /* dias fora do mês */
+
+  /* ------------ BORDERS ------------ */
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-default: rgba(255, 255, 255, 0.10);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-border-brand: rgba(139, 92, 246, 0.35);
+
+  /* ------------ SEMANTIC / FUNCIONAL ------------ */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error:   #EF4444;
+  --color-danger:  #EF4444;
+  --color-info:    #38BDF8;
+
+  /* ------------ TYPOGRAPHY ------------ */
+  --font-sans: var(--font-geist-sans), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-montserrat), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Font sizes (escala fluida) */
+  --text-xs: 0.75rem;     /* 12px — tags, labels */
+  --text-sm: 0.875rem;    /* 14px — body small */
+  --text-base: 0.9375rem; /* 15px — body default */
+  --text-md: 1rem;        /* 16px — list items */
+  --text-lg: 1.125rem;    /* 18px — card titles */
+  --text-xl: 1.25rem;     /* 20px — section titles */
+  --text-2xl: 1.5rem;     /* 24px — counters */
+  --text-3xl: 1.875rem;   /* 30px — page title */
+  --text-4xl: 2.25rem;    /* 36px — hero numbers (72%, 12 days) */
+
+  /* ------------ RADIUS ------------ */
+  --radius-xs: 6px;    /* tags */
+  --radius-sm: 8px;    /* tags grandes */
+  --radius-md: 10px;   /* botões pequenos */
+  --radius-lg: 12px;   /* botões, inputs */
+  --radius-xl: 16px;   /* cards principais */
+  --radius-2xl: 20px;  /* hero cards */
+  --radius-full: 9999px;
+
+  /* ------------ SHADOWS / GLOWS ------------ */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-brand-glow: 0 0 24px rgba(139, 92, 246, 0.35);
+  --shadow-brand-glow-strong: 0 0 40px rgba(139, 92, 246, 0.5);
+
+  /* ------------ SPACING (extras) ------------ */
+  --spacing-card: 1.5rem;        /* padding interno padrão de card: 24px */
+  --spacing-card-tight: 1.25rem; /* 20px */
+
+  /* ------------ Z-INDEX ------------ */
+  --z-dropdown: 50;
+  --z-modal: 100;
+  --z-toast: 200;
+}
+
+/* ============================================================
+   GRADIENTS REUTILIZÁVEIS
+   Use como classes utilitárias customizadas:
+   <div className="bg-gradient-brand"> ... </div>
+   ============================================================ */
+@layer utilities {
+  .bg-gradient-brand {
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-indigo) 0%,
+      var(--color-brand-500) 50%,
+      var(--color-accent-fuchsia) 100%
+    );
+  }
+
+  .bg-gradient-brand-soft {
+    background: linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.15) 0%,
+      rgba(139, 92, 246, 0.05) 100%
+    );
+  }
+
+  .bg-gradient-upgrade {
+    background: linear-gradient(
+      135deg,
+      var(--color-brand-900) 0%,
+      var(--color-brand-700) 100%
+    );
+  }
+
+  .bg-gradient-hero-quote {
+    background: linear-gradient(
+      180deg,
+      #1E1B4B 0%,
+      var(--color-brand-700) 50%,
+      var(--color-accent-fuchsia) 100%
+    );
+  }
+
+  .bg-gradient-card-active {
+    background: linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.20) 0%,
+      rgba(139, 92, 246, 0.04) 100%
+    );
+  }
+
+  /* Conic gradient para o donut de progresso */
+  .bg-conic-progress {
+    background: conic-gradient(
+      from 180deg,
+      var(--color-accent-indigo),
+      var(--color-brand-500),
+      var(--color-accent-fuchsia)
+    );
+  }
+
+  /* Glow ring para elementos com foco (avatar, dia ativo do calendar) */
+  .ring-brand-glow {
+    box-shadow: var(--shadow-brand-glow);
+  }
+}
+
+/* ============================================================
+   BASE GLOBAL
+   ============================================================ */
+@layer base {
+  html {
+    background-color: var(--color-bg-base);
+    color: var(--color-fg-secondary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg-base);
+  }
+
+  ::selection {
+    background-color: var(--color-brand-500);
+    color: white;
+  }
+
+  /* Scrollbar dark */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-base);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-bg-card-hover);
+    border-radius: var(--radius-full);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-700);
+  }
+}

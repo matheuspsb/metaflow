@@ -10,7 +10,7 @@ export function Header() {
         <nav className="flex items-center gap-6">
           <Link
             href="/dashboard"
-            className="text-sm font-medium text-fg-muted transition-colors hover:text-fg-primary"
+            className="text-sm font-medium text-fg-muted transition-colors duration-150 hover:text-fg-primary"
           >
             Dashboard
           </Link>
