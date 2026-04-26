@@ -32,8 +32,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable}`}>
-      <body className="font-sans antialiased">
+    <html
+      lang="pt-BR"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable}`}
+    >
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
     </html>

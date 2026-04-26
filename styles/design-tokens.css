@@ -146,6 +146,22 @@
     );
   }
 
+  .bg-gradient-sidebar-active {
+    background: linear-gradient(
+      to right,
+      #6347E8,
+      #3E28B8
+    );
+  }
+
+  .bg-gradient-sidebar-hover {
+    background: linear-gradient(
+      to right,
+      #1C1340,
+      #0F0A22
+    );
+  }
+
   .bg-gradient-card-active {
     background: linear-gradient(
       135deg,
