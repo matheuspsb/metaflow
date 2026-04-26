@@ -9,7 +9,7 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="mt-1 text-fg-muted">Bem-vindo ao MetaFlow</p>
+        <p className="text-fg-muted mt-1">Bem-vindo ao MetaFlow</p>
       </div>
     </div>
   )
