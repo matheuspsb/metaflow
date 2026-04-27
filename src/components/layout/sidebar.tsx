@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navItems } from './nav-items'
+import { SidebarSettings } from './sidebar-settings'
 
 export function SidebarLayout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -64,6 +65,8 @@ export function SidebarLayout({ children }: { children: React.ReactNode }) {
               </Link>
             )
           })}
+
+          <SidebarSettings pathname={pathname} onNavigate={() => setIsOpen(false)} />
         </nav>
       </aside>
 
