@@ -36,8 +36,8 @@ export function SidebarLayout({ children }: { children: React.ReactNode }) {
             src="/icon.png"
             alt="MetaFlow"
             width={32}
-            height={32}
-            style={{ width: 32, height: 32 }}
+            height={37}
+            style={{ width: 32, height: 37 }}
             className="rounded-lg"
           />
           <span className="font-display text-fg-primary text-lg font-bold tracking-tight">
