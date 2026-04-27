@@ -11,7 +11,7 @@ export function SidebarSettings({ pathname, onNavigate }: SidebarSettingsProps) 
   const isActive = pathname === '/configuracoes' || pathname.startsWith('/configuracoes/')
 
   return (
-    <div className="mt-auto pt-2">
+    <div className="pt-2">
       <div className="border-border-subtle mb-2 border-t" />
       <Link
         href="/configuracoes"

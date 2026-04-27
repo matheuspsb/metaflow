@@ -8,6 +8,7 @@ import { Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navItems } from './nav-items'
 import { SidebarSettings } from './sidebar-settings'
+import { SidebarUserPanel } from './sidebar-user-panel'
 
 export function SidebarLayout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -66,7 +67,10 @@ export function SidebarLayout({ children }: { children: React.ReactNode }) {
             )
           })}
 
-          <SidebarSettings pathname={pathname} onNavigate={() => setIsOpen(false)} />
+          <div className="mt-auto flex flex-col gap-3 pb-2">
+            <SidebarUserPanel />
+            <SidebarSettings pathname={pathname} onNavigate={() => setIsOpen(false)} />
+          </div>
         </nav>
       </aside>
 
