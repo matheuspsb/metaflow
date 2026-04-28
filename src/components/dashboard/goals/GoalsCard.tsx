@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Sparkles } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { DonutProgress } from './DonutProgress'
@@ -8,7 +9,6 @@ interface GoalsCardProps {
   overallProgress?: number
   goals?: Goal[]
   quote?: string
-  onSeeAll?: () => void
 }
 
 const DEFAULT_GOALS: Goal[] = [
@@ -22,18 +22,17 @@ export function GoalsCard({
   overallProgress = 72,
   goals = DEFAULT_GOALS,
   quote = 'Discipline today, freedom tomorrow.',
-  onSeeAll,
 }: GoalsCardProps) {
   return (
     <Card
       title="Goals Overview"
       action={
-        <button
-          onClick={onSeeAll}
-          className="bg-bg-input border-border-subtle text-fg-secondary hover:text-fg-primary cursor-pointer rounded-lg border px-3 py-1.5 text-sm transition-colors duration-150"
+        <Link
+          href="/metas"
+          className="bg-bg-input border-border-subtle text-fg-secondary hover:text-fg-primary rounded-lg border px-3 py-1.5 text-sm transition-colors duration-150"
         >
           See all
-        </button>
+        </Link>
       }
     >
       <div className="flex gap-6">
