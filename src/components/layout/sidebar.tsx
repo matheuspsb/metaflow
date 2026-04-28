@@ -25,7 +25,7 @@ export function SidebarLayout({ children }: { children: React.ReactNode }) {
 
       <aside
         className={cn(
-          'border-border-subtle fixed inset-y-0 left-0 z-50 flex h-screen w-60 shrink-0 flex-col border-r transition-transform duration-300 ease-in-out',
+          'border-border-subtle fixed inset-y-0 left-0 z-50 flex h-screen w-56 shrink-0 flex-col border-r transition-transform duration-300 ease-in-out',
           'bg-bg-sidebar/5 backdrop-blur-xl',
           'lg:bg-bg-sidebar lg:relative lg:translate-x-0 lg:backdrop-blur-none',
           isOpen ? 'translate-x-0' : '-translate-x-full',
