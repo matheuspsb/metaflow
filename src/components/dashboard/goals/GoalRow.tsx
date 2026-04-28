@@ -11,7 +11,7 @@ interface GoalRowProps {
 
 export function GoalRow({ goal }: GoalRowProps) {
   return (
-    <li className="flex w-full flex-col gap-1 overflow-hidden">
+    <li className="flex w-full flex-col gap-2 overflow-hidden">
       <div className="flex items-center justify-between gap-2">
         <span className="text-fg-secondary flex-1 truncate text-sm" title={goal.label}>
           {goal.icon} {goal.label}

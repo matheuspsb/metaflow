@@ -42,7 +42,10 @@ export function GoalsCard({
       <div className="flex gap-2">
         <DonutProgress value={overallProgress} />
 
-        <ul className="flex flex-1 overflow-hidden flex-col justify-center gap-2" aria-label="Goals list">
+        <ul
+          className="flex flex-1 flex-col justify-center gap-4 overflow-hidden"
+          aria-label="Goals list"
+        >
           {goals.map((goal) => (
             <GoalRow key={goal.id} goal={goal} />
           ))}
