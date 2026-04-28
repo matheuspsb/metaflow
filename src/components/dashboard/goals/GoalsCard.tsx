@@ -9,6 +9,7 @@ interface GoalsCardProps {
   overallProgress?: number
   goals?: Goal[]
   quote?: string
+  className?: string
 }
 
 const DEFAULT_GOALS: Goal[] = [
@@ -22,12 +23,15 @@ export function GoalsCard({
   overallProgress = 72,
   goals = DEFAULT_GOALS,
   quote = 'Discipline today, freedom tomorrow.',
+  className,
 }: GoalsCardProps) {
   return (
     <Card
+      className={className}
       title="Goals Overview"
       action={
         <Link
+          as="/metas"
           href="/metas"
           className="bg-bg-input border-border-subtle text-fg-secondary hover:text-fg-primary rounded-lg border px-3 py-1.5 text-sm transition-colors duration-150"
         >
@@ -35,10 +39,10 @@ export function GoalsCard({
         </Link>
       }
     >
-      <div className="flex gap-6">
+      <div className="flex gap-2">
         <DonutProgress value={overallProgress} />
 
-        <ul className="flex flex-1 flex-col justify-center gap-3" aria-label="Goals list">
+        <ul className="flex flex-1 overflow-hidden flex-col justify-center gap-2" aria-label="Goals list">
           {goals.map((goal) => (
             <GoalRow key={goal.id} goal={goal} />
           ))}
