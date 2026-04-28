@@ -12,9 +12,9 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-6">
       <Greeting name="Matheus" />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-        <GoalsCard />
-        <TodaysFocusCard />
-        <GoalsCard overallProgress={33} quote="Keep up the great work!" />
+        <GoalsCard className="max-h-85" />
+        <TodaysFocusCard className="max-h-85" />
+        <GoalsCard className="max-h-85" overallProgress={33} quote="Keep up the great work!" />
       </div>
     </div>
   )
