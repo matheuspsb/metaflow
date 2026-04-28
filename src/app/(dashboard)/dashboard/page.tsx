@@ -10,8 +10,13 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <Greeting name="Matheus" />
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
         <GoalsCard />
+        <GoalsCard overallProgress={33} quote="Keep up the great work!" />
+        <GoalsCard
+          overallProgress={49}
+          goals={[{ id: '1', label: 'Goal 1', progress: 49, icon: '🎯' }]}
+        />
       </div>
     </div>
   )
