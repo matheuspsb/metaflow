@@ -27,7 +27,7 @@ export function TodaysFocusCard({
   const [tasks, setTasks] = useState<Task[]>(initialTasks)
 
   function handleToggle(id: string) {
-    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t)))
+    setTasks((prev) => prev.map((task) => (task.id === id ? { ...task, done: !task.done } : task)))
   }
 
   return (

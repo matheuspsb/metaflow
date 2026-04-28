@@ -17,7 +17,7 @@ interface TaskRowProps {
 
 export function TaskRow({ task, onToggle }: TaskRowProps) {
   return (
-    <li className="group flex cursor-pointer items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-bg-card-hover">
+    <li className="group hover:bg-bg-card-hover flex cursor-pointer items-center gap-3 rounded-lg px-3 py-3 transition-colors">
       <button
         aria-label={task.done ? 'Mark as incomplete' : 'Mark as complete'}
         onClick={() => onToggle?.(task.id)}
