@@ -73,16 +73,16 @@ export function CalendarCard({ eventDates = [], className }: CalendarCardProps) 
               className="flex flex-col items-center"
             >
               <button
-                onClick={() => day.isCurrentMonth && setSelectedDate(day.date)}
+                onClick={() => setSelectedDate(day.date)}
+                disabled={!day.isCurrentMonth}
                 aria-label={day.date.toDateString()}
                 aria-pressed={isSelected}
-                aria-disabled={!day.isCurrentMonth}
                 className={`flex h-8 w-8 items-center justify-center rounded-full text-sm transition-all duration-150 ${
                   isSelected
                     ? 'bg-gradient-brand shadow-brand-glow font-semibold text-white'
                     : day.isCurrentMonth
                       ? 'text-fg-secondary hover:bg-bg-card-hover cursor-pointer'
-                      : 'text-fg-disabled cursor-default'
+                      : 'text-fg-disabled'
                 }`}
               >
                 {day.date.getDate()}
