@@ -84,18 +84,15 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
             <span className="text-fg-secondary text-sm font-medium">Category</span>
             <div className="flex flex-wrap gap-2">
               {TASK_CATEGORIES.map((cat) => (
-                <button
+                <Button
                   key={cat.id}
                   type="button"
+                  size="sm"
+                  variant={selectedCategory === cat.id ? 'primary' : 'secondary'}
                   onClick={() => setValue('category', cat.id, { shouldValidate: true })}
-                  className={`cursor-pointer rounded-lg border px-3 py-1.5 text-sm font-medium transition-all duration-150 ${
-                    selectedCategory === cat.id
-                      ? 'bg-gradient-brand shadow-brand-glow border-transparent text-white'
-                      : 'bg-bg-input border-border-subtle text-fg-secondary hover:border-border-brand hover:text-fg-primary'
-                  }`}
                 >
                   {cat.label}
-                </button>
+                </Button>
               ))}
             </div>
             {errors.category && (
@@ -111,7 +108,7 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
               id="task-time"
               type="time"
               {...register('time')}
-              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary rounded-lg border px-3 py-2.5 text-sm scheme-dark transition-colors duration-150 outline-none"
+              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary rounded-lg border px-3 py-2.5 text-sm scheme-dark outline-none transition-colors duration-150"
             />
           </div>
 

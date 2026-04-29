@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles = {
-  primary: 'bg-gradient-brand text-white shadow-brand-glow hover:shadow-brand-glow-strong',
+  primary: 'border border-transparent bg-gradient-brand text-white shadow-brand-glow hover:shadow-brand-glow-strong',
   secondary:
     'bg-bg-input text-fg-secondary border border-border-subtle hover:bg-bg-card-hover hover:text-fg-primary',
   ghost: 'text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary',
