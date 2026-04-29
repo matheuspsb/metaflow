@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { useCalendarStore } from '@/stores/calendar-store'
-import { getCalendarDays, isSameDay, MONTH_NAMES, DAY_INITIALS } from '@/lib/calendar'
+import { getCalendarDays, isSameDay, toDayKey, MONTH_NAMES, DAY_INITIALS } from '@/lib/calendar'
 
 interface CalendarCardProps {
   eventDates?: Date[]
@@ -62,13 +62,16 @@ export function CalendarCard({ eventDates = [], className }: CalendarCardProps) 
 
       {/* Days grid */}
       <div className="grid grid-cols-7 gap-y-0.5">
-        {days.map((day, i) => {
+        {days.map((day) => {
           const isSelected = isSameDay(day.date, selectedDate)
           const hasEvent = eventDates.some((d) => isSameDay(d, day.date))
           const showDot = day.isToday || hasEvent
 
           return (
-            <div key={i} className="flex flex-col items-center">
+            <div
+              key={toDayKey(day.date)}
+              className="flex flex-col items-center"
+            >
               <button
                 onClick={() => day.isCurrentMonth && setSelectedDate(day.date)}
                 aria-label={day.date.toDateString()}

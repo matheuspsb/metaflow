@@ -16,16 +16,15 @@ export const useCalendarStore = create<CalendarState>()(
       selectedDate: new Date(),
       viewDate: new Date(),
 
-      setSelectedDate: (date) =>
-        set({ selectedDate: date }, false, 'calendar/setSelectedDate'),
+      setSelectedDate: (date) => set({ selectedDate: date }, false, 'calendar/setSelectedDate'),
 
       goToPrevMonth: () =>
         set(
           (state) => {
-            const d = new Date(state.viewDate)
-            d.setDate(1)
-            d.setMonth(d.getMonth() - 1)
-            return { viewDate: d }
+            const date = new Date(state.viewDate)
+            date.setDate(1)
+            date.setMonth(date.getMonth() - 1)
+            return { viewDate: date }
           },
           false,
           'calendar/goToPrevMonth',
@@ -34,21 +33,17 @@ export const useCalendarStore = create<CalendarState>()(
       goToNextMonth: () =>
         set(
           (state) => {
-            const d = new Date(state.viewDate)
-            d.setDate(1)
-            d.setMonth(d.getMonth() + 1)
-            return { viewDate: d }
+            const date = new Date(state.viewDate)
+            date.setDate(1)
+            date.setMonth(date.getMonth() + 1)
+            return { viewDate: date }
           },
           false,
           'calendar/goToNextMonth',
         ),
 
       goToToday: () =>
-        set(
-          { selectedDate: new Date(), viewDate: new Date() },
-          false,
-          'calendar/goToToday',
-        ),
+        set({ selectedDate: new Date(), viewDate: new Date() }, false, 'calendar/goToToday'),
     }),
     { name: 'calendar-store' },
   ),
