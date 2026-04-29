@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { TaskRow } from './TaskRow'
 import { AddTaskModal } from './AddTaskModal'
 import { useFocusStore } from '@/stores/focus-store'
@@ -39,14 +40,16 @@ export function TodaysFocusCard({ className }: TodaysFocusCardProps) {
           ))}
         </ul>
 
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="border-border-subtle text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary flex w-full items-center justify-center gap-2 rounded-lg border border-dashed py-2.5 text-sm transition-colors duration-150"
+        <Button
+          variant="dashed"
+          size="lg"
+          leftIcon={<Plus className="h-4 w-4" />}
+          className="w-full"
           aria-label="Add new task"
+          onClick={() => setIsModalOpen(true)}
         >
-          <Plus className="h-4 w-4" />
           Add Task
-        </button>
+        </Button>
       </Card>
 
       <AddTaskModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
