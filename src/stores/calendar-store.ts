@@ -1,6 +1,12 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
+function today(): Date {
+  const date = new Date()
+  date.setHours(0, 0, 0, 0)
+  return date
+}
+
 interface CalendarState {
   selectedDate: Date
   viewDate: Date
@@ -13,8 +19,8 @@ interface CalendarState {
 export const useCalendarStore = create<CalendarState>()(
   devtools(
     (set) => ({
-      selectedDate: new Date(),
-      viewDate: new Date(),
+      selectedDate: today(),
+      viewDate: today(),
 
       setSelectedDate: (date) => set({ selectedDate: date }, false, 'calendar/setSelectedDate'),
 
@@ -43,7 +49,7 @@ export const useCalendarStore = create<CalendarState>()(
         ),
 
       goToToday: () =>
-        set({ selectedDate: new Date(), viewDate: new Date() }, false, 'calendar/goToToday'),
+        set({ selectedDate: today(), viewDate: today() }, false, 'calendar/goToToday'),
     }),
     { name: 'calendar-store' },
   ),

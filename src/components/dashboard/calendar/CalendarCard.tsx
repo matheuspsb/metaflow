@@ -62,7 +62,6 @@ export function CalendarCard({ eventDates = EMPTY_DATES, className }: CalendarCa
         </div>
       </div>
 
-      {/* Day initials row */}
       <div className="mb-1 grid grid-cols-7">
         {DAY_INITIALS.map((d) => (
           <span key={d} className="text-fg-muted py-1 text-center text-xs font-medium">
@@ -71,7 +70,6 @@ export function CalendarCard({ eventDates = EMPTY_DATES, className }: CalendarCa
         ))}
       </div>
 
-      {/* Days grid */}
       <div className="grid grid-cols-7 gap-y-0.5">
         {days.map((day) => {
           const isSelected = isSameDay(day.date, selectedDate)
