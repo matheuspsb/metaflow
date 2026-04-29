@@ -1,11 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-
-function today(): Date {
-  const date = new Date()
-  date.setHours(0, 0, 0, 0)
-  return date
-}
+import { today } from '@/lib/calendar'
 
 interface CalendarState {
   selectedDate: Date
