@@ -4,22 +4,6 @@ export interface CalendarDay {
   isToday: boolean
 }
 
-export const MONTH_NAMES = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-]
-
-export const DAY_INITIALS = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB']
 
 export function today(): Date {
   const date = new Date()
@@ -40,8 +24,7 @@ export function isSameDay(a: Date, b: Date): boolean {
 }
 
 export function getCalendarDays(viewDate: Date): CalendarDay[] {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
+  const todayDate = today()
 
   const year = viewDate.getFullYear()
   const month = viewDate.getMonth()
@@ -62,7 +45,7 @@ export function getCalendarDays(viewDate: Date): CalendarDay[] {
     days.push({
       date,
       isCurrentMonth: date.getMonth() === month,
-      isToday: isSameDay(date, today),
+      isToday: isSameDay(date, todayDate),
     })
     cursor.setDate(cursor.getDate() + 1)
   }

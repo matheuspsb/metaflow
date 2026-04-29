@@ -4,7 +4,8 @@ import { useMemo } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { useCalendarStore } from '@/stores/calendar-store'
-import { getCalendarDays, isSameDay, toDayKey, MONTH_NAMES, DAY_INITIALS } from '@/lib/calendar'
+import { getCalendarDays, isSameDay, toDayKey } from '@/lib/calendar'
+import { MONTH_NAMES, DAY_INITIALS } from '@/lib/constants'
 
 interface CalendarCardProps {
   eventDates?: Date[]
