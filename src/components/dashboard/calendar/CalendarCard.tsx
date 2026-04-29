@@ -13,13 +13,17 @@ interface CalendarCardProps {
 
 export function CalendarCard({ eventDates = [], className }: CalendarCardProps) {
   const selectedDate = useCalendarStore((s) => s.selectedDate)
-  const viewDate = useCalendarStore((s) => s.viewDate)
+  const viewMonth = useCalendarStore((s) => s.viewDate.getMonth())
+  const viewYear = useCalendarStore((s) => s.viewDate.getFullYear())
   const setSelectedDate = useCalendarStore((s) => s.setSelectedDate)
   const goToPrevMonth = useCalendarStore((s) => s.goToPrevMonth)
   const goToNextMonth = useCalendarStore((s) => s.goToNextMonth)
   const goToToday = useCalendarStore((s) => s.goToToday)
 
-  const days = getCalendarDays(viewDate)
+  const days = useMemo(
+    () => getCalendarDays(new Date(viewYear, viewMonth, 1)),
+    [viewYear, viewMonth],
+  )
 
   const eventSet = useMemo(
     () => new Set(eventDates.map(toDayKey)),
@@ -30,7 +34,7 @@ export function CalendarCard({ eventDates = [], className }: CalendarCardProps) 
     <Card className={className}>
       <div className="mb-5 flex items-center justify-between">
         <h2 className="text-fg-primary text-lg font-semibold">
-          {MONTH_NAMES[viewDate.getMonth()]} {viewDate.getFullYear()}
+          {MONTH_NAMES[viewMonth]} {viewYear}
         </h2>
 
         <div className="flex items-center gap-1">
