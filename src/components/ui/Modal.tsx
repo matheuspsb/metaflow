@@ -19,7 +19,7 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
     >
       <Dialog.Portal>
         <Dialog.Overlay className="bg-bg-base/80 fixed inset-0 z-100 backdrop-blur-sm" />
-        <Dialog.Content className="fixed top-1/2 left-1/2 z-101 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 p-4 outline-none">
+        <Dialog.Content aria-describedby={undefined} className="fixed top-1/2 left-1/2 z-101 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 p-4 outline-none">
           {children}
         </Dialog.Content>
       </Dialog.Portal>
