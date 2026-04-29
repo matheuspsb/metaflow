@@ -11,7 +11,9 @@ interface CalendarCardProps {
   className?: string
 }
 
-export function CalendarCard({ eventDates = [], className }: CalendarCardProps) {
+const EMPTY_DATES: Date[] = []
+
+export function CalendarCard({ eventDates = EMPTY_DATES, className }: CalendarCardProps) {
   const selectedDate = useCalendarStore((s) => s.selectedDate)
   const viewMonth = useCalendarStore((s) => s.viewDate.getMonth())
   const viewYear = useCalendarStore((s) => s.viewDate.getFullYear())
