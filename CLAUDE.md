@@ -20,6 +20,7 @@ Antes de qualquer task de UI, leia nesta ordem:
 - **Styling**: Tailwind CSS v4 (configurado via `@theme` no CSS, **sem** `tailwind.config.js`)
 - **Linguagem**: TypeScript
 - **Ícones**: `lucide-react` (preferencial)
+- **Estado global**: Zustand v5 — stores em `src/stores/`, padrão `create` + `devtools`
 - **Modo**: dark-only (não implementar light mode)
 
 ---
@@ -70,23 +71,50 @@ Quando eu pedir um componente novo:
 
 ```
 project-root/
-├── app/
-│   ├── globals.css           # importa styles/design-tokens.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-│   ├── ui/                   # primitivos (Button, Card, Tag, Input)
-│   ├── dashboard/            # widgets do dashboard
-│   └── layout/               # Sidebar, Topbar
+├── src/
+│   ├── app/
+│   │   ├── (auth)/           # rotas de autenticação
+│   │   ├── (dashboard)/      # rotas protegidas do app
+│   │   ├── globals.css       # importa styles/design-tokens.css
+│   │   └── layout.tsx
+│   ├── components/
+│   │   ├── ui/               # primitivos (Button, Card, ProgressRing)
+│   │   ├── dashboard/
+│   │   │   ├── focus/        # TodaysFocusCard, TaskRow
+│   │   │   └── goals/        # GoalsCard, GoalRow, DonutProgress
+│   │   └── layout/           # Sidebar, SidebarUserPanel
+│   ├── stores/               # Zustand stores (um arquivo por domínio)
+│   │   └── focus-store.ts    # tarefas do dia
+│   ├── hooks/                # custom hooks reutilizáveis
+│   ├── lib/
+│   │   └── utils.ts          # cn(), helpers
+│   ├── providers/            # React providers (wrappers de contexto)
+│   ├── services/             # chamadas de API / integrações externas
+│   └── types/
+│       └── index.ts          # tipos globais compartilhados
 ├── styles/
 │   └── design-tokens.css     # tokens Tailwind v4
 ├── docs/
 │   ├── DESIGN.md
 │   └── components.md
-├── lib/
-│   └── utils.ts              # cn(), helpers
 └── CLAUDE.md                 # este arquivo
 ```
+
+### Convenção de stores (Zustand)
+
+Cada domínio tem seu próprio arquivo em `src/stores/`. Padrão obrigatório:
+
+```ts
+export const useXyzStore = create<XyzState>()(
+  devtools(
+    (set) => ({ /* estado e actions */ }),
+    { name: 'xyz-store' },
+  ),
+)
+```
+
+- Nomeie actions com prefixo de domínio nas devtools: `'focus/toggleTask'`
+- Exporte apenas o hook `useXyzStore`; consuma via seletores granulares: `useXyzStore((s) => s.tasks)`
 
 ---
 

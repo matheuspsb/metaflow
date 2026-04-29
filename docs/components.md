@@ -272,6 +272,83 @@
 </div>
 ```
 
+## 15. TodaysFocusCard
+
+Card de tarefas do dia com altura fixa (3 itens visíveis), scroll vertical e botão "Add Task". Consome estado via `useFocusStore`.
+
+```tsx
+// src/components/dashboard/focus/TodaysFocusCard.tsx
+'use client'
+
+import { Plus } from 'lucide-react'
+import { Card } from '@/components/ui/card'
+import { TaskRow } from './TaskRow'
+import { useFocusStore } from '@/stores/focus-store'
+
+export function TodaysFocusCard({ onAddTask, className }) {
+  const tasks = useFocusStore((s) => s.tasks)
+  const toggleTask = useFocusStore((s) => s.toggleTask)
+
+  return (
+    <Card
+      className={className}
+      title="Today's Focus"
+      action={
+        <span className="bg-bg-tag text-fg-muted flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold">
+          {tasks.length}
+        </span>
+      }
+    >
+      {/* max-h-47 ≈ 3 itens; scrollbar violeta fina */}
+      <ul className="divide-border-subtle mb-4 flex max-h-47 flex-col divide-y overflow-y-auto pr-2
+        [&::-webkit-scrollbar]:w-1
+        [&::-webkit-scrollbar-thumb]:rounded-full
+        [&::-webkit-scrollbar-thumb]:bg-brand-500/70">
+        {tasks.map((task) => (
+          <TaskRow key={task.id} task={task} onToggle={toggleTask} />
+        ))}
+      </ul>
+
+      {/* Botão Add Task — dashed, sem gradient para não competir */}
+      <button
+        onClick={onAddTask}
+        className="border-border-subtle text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary
+          flex w-full items-center justify-center gap-2 rounded-lg border border-dashed py-2.5 text-sm transition-colors duration-150"
+      >
+        <Plus className="h-4 w-4" />
+        Add Task
+      </button>
+    </Card>
+  )
+}
+```
+
+**TaskRow** (item 6 atualizado — layout com tag abaixo do título):
+
+```tsx
+// src/components/dashboard/focus/TaskRow.tsx
+<li className="group flex cursor-pointer items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-bg-card-hover">
+  <button
+    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-150 ${
+      done ? 'border-brand-500 bg-brand-500' : 'border-fg-subtle group-hover:border-brand-400'
+    }`}
+  >
+    {done && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
+  </button>
+
+  <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+    <span className={`truncate text-sm ${done ? 'text-fg-muted line-through' : 'text-fg-primary'}`}>
+      {title}
+    </span>
+    <span className="bg-bg-tag text-fg-muted inline-flex w-fit items-center rounded-xs px-2 py-0.5 text-xs font-medium">
+      {category}
+    </span>
+  </div>
+
+  <span className="text-fg-muted shrink-0 text-xs tabular-nums">{time}</span>
+</li>
+```
+
 ---
 
 ## 🧪 Convenções de código
