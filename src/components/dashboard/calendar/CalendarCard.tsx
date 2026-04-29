@@ -17,10 +17,9 @@ export function CalendarCard({ eventDates = EMPTY_DATES, className }: CalendarCa
   const selectedDate = useCalendarStore((s) => s.selectedDate)
   const viewMonth = useCalendarStore((s) => s.viewDate.getMonth())
   const viewYear = useCalendarStore((s) => s.viewDate.getFullYear())
-  const setSelectedDate = useCalendarStore((s) => s.setSelectedDate)
-  const goToPrevMonth = useCalendarStore((s) => s.goToPrevMonth)
-  const goToNextMonth = useCalendarStore((s) => s.goToNextMonth)
-  const goToToday = useCalendarStore((s) => s.goToToday)
+
+  const { setSelectedDate, goToPrevMonth, goToNextMonth, goToToday } =
+    useCalendarStore.getState()
 
   const days = useMemo(
     () => getCalendarDays(new Date(viewYear, viewMonth, 1)),
