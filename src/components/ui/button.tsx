@@ -13,7 +13,8 @@ const variantStyles = {
   secondary:
     'bg-bg-input text-fg-secondary border border-border-subtle hover:bg-bg-card-hover hover:text-fg-primary',
   ghost: 'text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary',
-  dashed: 'border border-dashed border-border-subtle text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary',
+  dashed:
+    'border border-dashed border-border-subtle text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary',
 } as const
 
 const sizeStyles = {
@@ -34,7 +35,7 @@ export function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center font-medium transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50',
+        'inline-flex cursor-pointer items-center justify-center font-medium transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50',
         variantStyles[variant],
         sizeStyles[size],
         className,

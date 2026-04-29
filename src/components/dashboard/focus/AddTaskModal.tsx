@@ -4,6 +4,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { X } from 'lucide-react'
 import { Modal, ModalTitle, ModalClose } from '@/components/ui/Modal'
+import { Button } from '@/components/ui/button'
 import { useFocusStore } from '@/stores/focus-store'
 import { TASK_CATEGORIES } from '@/lib/constants'
 import { toAmPm, defaultTime } from '@/lib/time'
@@ -17,12 +18,18 @@ interface AddTaskModalProps {
 export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
   const addTask = useFocusStore.getState().addTask
 
-  const { register, handleSubmit, setValue, control, reset, formState: { errors, isValid } } =
-    useForm<AddTaskFormData>({
-      resolver: zodResolver(addTaskSchema),
-      defaultValues: { title: '', category: '', time: defaultTime() },
-      mode: 'onChange',
-    })
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    control,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<AddTaskFormData>({
+    resolver: zodResolver(addTaskSchema),
+    defaultValues: { title: '', category: '', time: defaultTime() },
+    mode: 'onChange',
+  })
 
   const selectedCategory = useWatch({ control, name: 'category' })
 
@@ -50,7 +57,7 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
           <ModalTitle className="text-fg-primary text-lg font-semibold">New Task</ModalTitle>
           <ModalClose
             aria-label="Close modal"
-            className="text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary flex h-7 w-7 items-center justify-center rounded-lg transition-colors duration-150"
+            className="text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg transition-colors duration-150"
           >
             <X className="h-4 w-4" />
           </ModalClose>
@@ -68,7 +75,7 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
               autoFocus
               autoComplete="off"
               {...register('title')}
-              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary placeholder:text-fg-subtle rounded-lg border px-3 py-2.5 text-sm outline-none transition-colors duration-150"
+              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary placeholder:text-fg-subtle rounded-lg border px-3 py-2.5 text-sm transition-colors duration-150 outline-none"
             />
             {errors.title && <span className="text-danger text-xs">{errors.title.message}</span>}
           </div>
@@ -81,7 +88,7 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
                   key={cat.id}
                   type="button"
                   onClick={() => setValue('category', cat.id, { shouldValidate: true })}
-                  className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-all duration-150 ${
+                  className={`cursor-pointer rounded-lg border px-3 py-1.5 text-sm font-medium transition-all duration-150 ${
                     selectedCategory === cat.id
                       ? 'bg-gradient-brand shadow-brand-glow border-transparent text-white'
                       : 'bg-bg-input border-border-subtle text-fg-secondary hover:border-border-brand hover:text-fg-primary'
@@ -104,25 +111,29 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
               id="task-time"
               type="time"
               {...register('time')}
-              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary rounded-lg border px-3 py-2.5 text-sm outline-none transition-colors duration-150 scheme-dark"
+              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary rounded-lg border px-3 py-2.5 text-sm scheme-dark transition-colors duration-150 outline-none"
             />
           </div>
 
           <div className="mt-1 flex gap-3">
-            <button
+            <Button
               type="button"
+              variant="secondary"
+              size="lg"
+              className="flex-1"
               onClick={handleClose}
-              className="bg-bg-input border-border-subtle text-fg-secondary hover:bg-bg-card-hover hover:text-fg-primary flex-1 rounded-lg border py-2.5 text-sm font-medium transition-all duration-150"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
+              variant="primary"
+              size="lg"
+              className="flex-1"
               disabled={!isValid}
-              className="bg-gradient-brand shadow-brand-glow flex-1 rounded-lg py-2.5 text-sm font-medium text-white transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Add Task
-            </button>
+            </Button>
           </div>
         </form>
       </div>

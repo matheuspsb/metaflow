@@ -17,11 +17,11 @@ interface TaskRowProps {
 
 export function TaskRow({ task, onToggle }: TaskRowProps) {
   return (
-    <li className="group hover:bg-bg-card-hover flex cursor-pointer items-center gap-3 rounded-lg px-3 py-3 transition-colors">
+    <li className="group hover:bg-bg-card-hover flex items-center gap-3 rounded-lg px-3 py-3 transition-colors">
       <button
         aria-label={task.done ? 'Mark as incomplete' : 'Mark as complete'}
         onClick={() => onToggle?.(task.id)}
-        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-150 ${
+        className={`flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-full border-2 transition-all duration-150 ${
           task.done
             ? 'border-brand-500 bg-brand-500'
             : 'border-fg-subtle group-hover:border-brand-400'
