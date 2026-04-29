@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { useCalendarStore } from '@/stores/calendar-store'
@@ -19,6 +20,11 @@ export function CalendarCard({ eventDates = [], className }: CalendarCardProps) 
   const goToToday = useCalendarStore((s) => s.goToToday)
 
   const days = getCalendarDays(viewDate)
+
+  const eventSet = useMemo(
+    () => new Set(eventDates.map(toDayKey)),
+    [eventDates],
+  )
 
   return (
     <Card className={className}>
@@ -64,7 +70,7 @@ export function CalendarCard({ eventDates = [], className }: CalendarCardProps) 
       <div className="grid grid-cols-7 gap-y-0.5">
         {days.map((day) => {
           const isSelected = isSameDay(day.date, selectedDate)
-          const hasEvent = eventDates.some((d) => isSameDay(d, day.date))
+          const hasEvent = eventSet.has(toDayKey(day.date))
           const showDot = day.isToday || hasEvent
 
           return (
