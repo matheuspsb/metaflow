@@ -5,7 +5,7 @@ import {
   ConstellationWaves,
   ConstellationNode,
   ConstellationCenter,
-} from '@/components/auth/constellation'
+} from './constellation'
 
 export function HeroConstellation() {
   return (

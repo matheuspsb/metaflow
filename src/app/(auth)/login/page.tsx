@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { HeroSection } from '@/components/auth/HeroSection'
-import { LoginCard } from '@/components/auth/LoginCard'
+import { HeroSection, LoginCard } from '@/components/auth'
 
 export const metadata: Metadata = {
   title: 'Login — MetaFlow',

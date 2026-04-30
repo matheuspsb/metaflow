@@ -1,4 +1,4 @@
-import { MetaFlowLogo } from '@/components/auth/MetaFlowLogo'
+import { MetaFlowLogo } from '../MetaFlowLogo'
 
 export function HeroBrand() {
   return (
