@@ -2,6 +2,7 @@
 
 import { Check, Flag } from 'lucide-react'
 import type { TaskEntry } from '@/stores/tasks-store'
+import { IconButton } from '@/components/ui/IconButton'
 
 interface TaskItemProps {
   task: TaskEntry
@@ -34,18 +35,18 @@ export function TaskItem({ task, onToggle, onFlag }: TaskItemProps) {
   const { label, isToday } = formatDueDate(task.dueDate)
 
   return (
-    <li className="group flex items-center gap-3 rounded-lg px-3 py-3 transition-colors duration-150 hover:bg-bg-card-hover">
-      <button
+    <li className="group hover:bg-bg-card-hover flex items-center gap-3 rounded-lg px-3 py-3 transition-colors duration-150">
+      <IconButton
         aria-label={task.done ? 'Mark as incomplete' : 'Mark as complete'}
         onClick={() => onToggle(task.id)}
-        className={`flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-full border-2 transition-all duration-150 ${
+        className={`h-5 w-5 rounded-full border-2 transition-all duration-150 ${
           task.done
             ? 'border-brand-500 bg-brand-500'
             : 'border-fg-subtle group-hover:border-brand-400'
         }`}
       >
         {task.done && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
-      </button>
+      </IconButton>
 
       <span
         className={`min-w-0 flex-1 truncate text-sm transition-colors ${
@@ -67,17 +68,15 @@ export function TaskItem({ task, onToggle, onFlag }: TaskItemProps) {
         {label}
       </span>
 
-      <button
+      <IconButton
         aria-label={task.flagged ? 'Remove flag' : 'Flag task'}
         onClick={() => onFlag(task.id)}
-        className={`shrink-0 transition-colors duration-150 ${
-          task.flagged
-            ? 'text-brand-400'
-            : 'text-fg-subtle opacity-0 group-hover:opacity-100'
-        }`}
+        className={
+          task.flagged ? 'text-brand-400' : 'text-fg-subtle opacity-0 group-hover:opacity-100'
+        }
       >
         <Flag className="h-4 w-4" fill={task.flagged ? 'currentColor' : 'none'} />
-      </button>
+      </IconButton>
     </li>
   )
 }
