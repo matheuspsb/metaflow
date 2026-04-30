@@ -7,6 +7,7 @@ export interface Task {
   title: string
   category: string
   time: string
+  dueDate: string
   done?: boolean
 }
 

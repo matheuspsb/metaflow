@@ -349,6 +349,100 @@ export function TodaysFocusCard({ onAddTask, className }) {
 </li>
 ```
 
+## 16. IconButton
+
+Primitive para botões icon-only. `aria-label` é obrigatório. Base styles baked in; use `className` para shape e cor.
+
+```tsx
+// src/components/ui/IconButton.tsx
+<IconButton
+  aria-label="Flag task"
+  onClick={() => onFlag(id)}
+  className="text-fg-subtle opacity-0 group-hover:opacity-100"
+>
+  <Flag className="h-4 w-4" />
+</IconButton>
+```
+
+**Não use** para botões com label de texto — use o `Button` com variante `ghost` ou `secondary`.
+
+---
+
+## 17. TaskItem (Tasks card row)
+
+Row da lista de tarefas com checkbox circular, título, tag de categoria, data e flag. Consome `TaskEntry` de `tasks-store`.
+
+```tsx
+// src/components/dashboard/tasks/TaskItem.tsx
+// Layout: [checkbox] [título] [tag] [data] [flag]
+
+<li className="group hover:bg-bg-card-hover flex items-center gap-3 rounded-lg px-3 py-3 transition-colors duration-150">
+  <IconButton aria-label="Mark as complete" className="h-5 w-5 rounded-full border-2 border-fg-subtle group-hover:border-brand-400">
+    {/* filled quando done: border-brand-500 bg-brand-500 */}
+    <Check className="h-3 w-3 text-white" strokeWidth={3} />
+  </IconButton>
+
+  <span className="min-w-0 flex-1 truncate text-sm text-fg-primary">{title}</span>
+
+  <span className="bg-bg-tag text-fg-muted shrink-0 rounded-xs px-2 py-0.5 text-xs font-medium">
+    {category}
+  </span>
+
+  {/* "Today" → text-success font-medium; demais → text-fg-muted */}
+  <span className="w-16 shrink-0 text-right text-xs tabular-nums text-fg-muted">{label}</span>
+
+  <IconButton aria-label="Flag task" className="text-brand-400">
+    <Flag className="h-4 w-4" fill="currentColor" />
+  </IconButton>
+</li>
+```
+
+**Lógica de data**: `formatDueDate(dueDate: string)` retorna `{ label, isToday }` — compara por dia de calendário sem side effects.
+
+---
+
+## 18. TasksCard
+
+Card de largura dupla (`col-span-2`) com tab filter por categoria, lista filtrada via `useMemo` e ações Filter/Sort. Consome `useTasksStore`.
+
+```tsx
+// src/components/dashboard/tasks/TasksCard.tsx
+'use client'
+
+// Tabs derivadas de TASK_CATEGORIES + 'All'
+const TABS: FilterTab[] = ['All', ...TASK_CATEGORIES.map((category) => category.id)]
+
+<Card title="Tasks" action={<FilterSortButtons />} className={className}>
+  {/* Tab bar — receita do componente 14 */}
+  <div className="bg-bg-input mb-4 flex items-center gap-1 rounded-lg p-1">
+    {TABS.map((tab) => (
+      <button
+        key={tab}
+        onClick={() => setActiveTab(tab)}
+        className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all duration-150 ${
+          activeTab === tab
+            ? 'bg-brand-500 shadow-brand-glow text-white'
+            : 'text-fg-muted hover:text-fg-primary'
+        }`}
+      >
+        {tab}
+      </button>
+    ))}
+  </div>
+
+  {/* Lista filtrada */}
+  <ul className="divide-border-subtle divide-y">
+    {filteredTasks.map((task) => (
+      <TaskItem key={task.id} task={task} onToggle={toggleTask} onFlag={toggleFlag} />
+    ))}
+  </ul>
+</Card>
+```
+
+**No dashboard**: `<TasksCard className="xl:col-span-2" />` — ocupa 2 de 3 colunas no breakpoint `xl`.
+
+**Tab buttons**: não usam o `Button` UI — o active state precisa de `bg-brand-500` sólido (não gradient) e o inactive não deve ter hover background. Padrão standalone conforme receita 14.
+
 ---
 
 ## 🧪 Convenções de código
