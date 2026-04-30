@@ -13,9 +13,10 @@ import { addTaskSchema, type AddTaskFormData } from '@/schemas/addTaskSchema'
 interface AddTaskModalProps {
   isOpen: boolean
   onClose: () => void
+  defaultDate: string
 }
 
-export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
+export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps) {
   const addTask = useFocusStore.getState().addTask
 
   const {
@@ -39,6 +40,7 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
       title: data.title,
       category: data.category,
       time: data.time ? toAmPm(data.time) : '',
+      dueDate: defaultDate,
       done: false,
     })
     reset({ title: '', category: '', time: defaultTime() })
@@ -108,7 +110,7 @@ export function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
               id="task-time"
               type="time"
               {...register('time')}
-              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary rounded-lg border px-3 py-2.5 text-sm scheme-dark outline-none transition-colors duration-150"
+              className="bg-bg-input border-border-default focus:border-border-brand text-fg-primary rounded-lg border px-3 py-2.5 text-sm scheme-dark transition-colors duration-150 outline-none"
             />
           </div>
 

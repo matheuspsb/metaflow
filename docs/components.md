@@ -443,6 +443,45 @@ const TABS: FilterTab[] = ['All', ...TASK_CATEGORIES.map((category) => category.
 
 **Tab buttons**: não usam o `Button` UI — o active state precisa de `bg-brand-500` sólido (não gradient) e o inactive não deve ter hover background. Padrão standalone conforme receita 14.
 
+## 19. TodaysFocusCard ↔ CalendarCard (conexão de data)
+
+O card de foco é driven pelo `selectedDate` do `calendar-store` — não tem data própria. Ao clicar em qualquer dia no calendário, o foco filtra automaticamente.
+
+**Padrão de conexão:**
+```tsx
+// TodaysFocusCard.tsx
+const selectedDate = useCalendarStore((state) => state.selectedDate)
+
+// Filtra por dia de calendário — sem useEffect
+const filteredTasks = useMemo(
+  () => tasks.filter((task) => isSameDay(new Date(task.dueDate + 'T00:00:00'), selectedDate)),
+  [tasks, selectedDate],
+)
+
+// Título dinâmico
+function formatCardTitle(date: Date): string {
+  if (isSameDay(date, today())) return "Today's Focus"
+  return date.toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })
+}
+
+// defaultDate evita UTC drift
+<AddTaskModal defaultDate={toISODate(selectedDate)} />
+```
+
+**Regras:**
+- `selectedDate` vive no `calendar-store` — nunca duplique no `focus-store`
+- `toISODate` (de `@/lib/calendar`) converte `Date` → `YYYY-MM-DD` usando `getFullYear/Month/Date` para evitar drift de timezone
+- Novas tarefas adicionadas pelo modal herdam o `selectedDate` via prop `defaultDate`
+- O campo `dueDate: string` (ISO) é obrigatório em todo `Task` do `focus-store`
+
+**Helpers em `@/lib/calendar`:**
+| Função | Uso |
+|---|---|
+| `today()` | Retorna `Date` zerado em meia-noite local |
+| `isSameDay(a, b)` | Compara dois `Date` por dia de calendário |
+| `toISODate(date)` | Converte `Date` → `'YYYY-MM-DD'` sem UTC drift |
+| `toDayKey(date)` | Chave interna do calendário (não usar como ISO) |
+
 ---
 
 ## 🧪 Convenções de código
