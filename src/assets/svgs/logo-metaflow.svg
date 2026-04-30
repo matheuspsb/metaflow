@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="mfGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A78BFA"></stop>
+      <stop offset="0.55" stop-color="#7C3AED"></stop>
+      <stop offset="1" stop-color="#4C1D95"></stop>
+    </linearGradient>
+    <linearGradient id="mfGlow" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C4B5FD" stop-opacity="0.9"></stop>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#mfGrad)"></rect>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#mfGlow)" opacity="0.35"></rect>
+  <path d="M14 48 L14 18 L22 18 L32 32 L42 18 L50 18 L50 48 L43 48 L43 30 L34 42 L30 42 L21 30 L21 48 Z" fill="#FFFFFF"></path>
+  <path d="M50 18 L50 26 L46 32 L42 26 L42 18 Z" fill="#FFFFFF" opacity="0.5"></path>
+</svg>
