@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { SidebarNav } from './sidebar-nav'
+import { MetaFlowLogo } from '../auth/MetaFlowLogo'
 
 interface SidebarClientProps {
   footer: ReactNode
@@ -34,14 +35,7 @@ export function SidebarClient({ footer, children }: SidebarClientProps) {
         )}
       >
         <div className="flex items-center gap-3 px-5 py-6">
-          <Image
-            src="/icon.png"
-            alt="MetaFlow"
-            width={32}
-            height={37}
-            style={{ width: 32, height: 37 }}
-            className="rounded-lg"
-          />
+          <MetaFlowLogo size={32} />
           <span className="font-display text-fg-primary text-lg font-bold tracking-tight">
             MetaFlow
           </span>
