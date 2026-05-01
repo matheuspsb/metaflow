@@ -10,7 +10,7 @@ export function HeroBrand() {
           className="text-fg-subtle mt-1 text-[11px] tracking-[0.2em]"
           style={{ fontFamily: 'var(--font-mono)' }}
         >
-          AUTOMAÇÃO. INTEGRAÇÃO. <span className="text-brand-400">RESULTADOS.</span>
+          CONEXÃO. CONSTÂNCIA. <span className="text-brand-400">EVOLUÇÃO.</span>
         </div>
       </div>
     </div>

@@ -5,9 +5,9 @@ export function HeroHeadline() {
         className="text-fg-primary leading-[1.08] font-bold tracking-tight"
         style={{ fontSize: 'clamp(34px, 3.6vw, 46px)' }}
       >
-        Automatize processos.
+        Conecte suas tarefas.
         <br />
-        Integre sistemas.
+        Mantenha a constância.
         <br />
         <span
           style={{
@@ -17,12 +17,12 @@ export function HeroHeadline() {
             backgroundClip: 'text',
           }}
         >
-          Impulsione resultados.
+          Conquiste seus objetivos.
         </span>
       </h2>
       <p className="text-fg-secondary mt-4.5 max-w-115 text-[15px] leading-relaxed">
-        O MetaFlow conecta suas ferramentas, otimiza fluxos de trabalho e transforma dados em
-        crescimento para o seu negócio.
+        O MetaFlow organiza sua rotina, monitora suas metas e transforma o seu esforço diário em
+        crescimento real.
       </p>
     </div>
   )
