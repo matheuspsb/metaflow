@@ -1,25 +1,17 @@
-import Image from 'next/image'
-import { ChevronDown, Crown } from 'lucide-react'
+import { Crown } from 'lucide-react'
 import retrato from '@/assets/retrato.png'
+import { UserDropdown } from './user-dropdown'
 
 export function SidebarUserPanel() {
+  const user = {
+    name: 'Matheus Paulo',
+    email: 'dev.matheus.paulo@gmail.com',
+    avatar: retrato,
+  }
+
   return (
     <div className="flex flex-col gap-3 px-1">
-      <button className="hover:bg-gradient-sidebar-hover flex w-full items-center gap-3 rounded-lg px-2 py-2 transition-all duration-150">
-        <Image
-          src={retrato}
-          alt="Matheus Paulo"
-          width={36}
-          height={36}
-          style={{ width: 36, height: 36 }}
-          className="shrink-0 rounded-full object-cover"
-        />
-        <div className="flex min-w-0 flex-1 flex-col items-start">
-          <span className="text-fg-primary truncate text-sm font-semibold">Matheus Paulo</span>
-          <span className="text-fg-muted w-full truncate text-xs">dev.matheus.paulo@gmail.com</span>
-        </div>
-        <ChevronDown className="text-fg-muted h-4 w-4 shrink-0" />
-      </button>
+      <UserDropdown name={user.name} email={user.email} avatar={user.avatar} />
 
       <div className="bg-gradient-upgrade border-border-brand rounded-xl border p-4">
         <div className="mb-2 flex items-center gap-2">

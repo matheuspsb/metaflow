@@ -34,16 +34,7 @@ export function SidebarNav({ onNavigate, footer }: SidebarNavProps) {
         </Link>
       ))}
 
-      <div className="mt-auto flex flex-col gap-3 pb-2">
-        {footer}
-        <div className="pt-2">
-          <div className="border-border-subtle mb-2 border-t" />
-          <Link href="/configuracoes" onClick={onNavigate} className={linkClass('/configuracoes')}>
-            <Settings className="h-5 w-5 shrink-0" />
-            Configurações
-          </Link>
-        </div>
-      </div>
+      <div className="mt-auto flex flex-col gap-3 pb-2">{footer}</div>
     </>
   )
 }
