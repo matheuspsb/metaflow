@@ -176,10 +176,19 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color-scheme: dark;
   }
 
   body {
     background-color: var(--color-bg-base);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #0d0a1a inset;
+    -webkit-text-fill-color: var(--color-fg-primary);
+    caret-color: var(--color-fg-primary);
   }
 
   ::selection {
@@ -201,5 +210,268 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-brand-700);
+  }
+}
+
+/* ============================================================
+   AUTH PAGE UTILITIES
+   ============================================================ */
+@layer utilities {
+  .bg-auth-page {
+    background:
+      radial-gradient(900px 600px at 18% 22%, rgba(108, 76, 241, 0.2), transparent 60%),
+      radial-gradient(800px 500px at 82% 80%, rgba(75, 50, 195, 0.25), transparent 60%),
+      var(--color-bg-base);
+  }
+
+  .auth-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(108, 76, 241, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108, 76, 241, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+    pointer-events: none;
+  }
+
+  /* Constellation node backgrounds */
+  .node-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(30, 22, 60, 0.95), rgba(20, 14, 40, 0.95));
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    box-shadow:
+      0 8px 24px rgba(124, 58, 237, 0.4),
+      inset 0 0 12px rgba(167, 139, 250, 0.12);
+  }
+
+  /* Feature chips */
+  .feature-chip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(20, 16, 36, 0.5);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: 14px;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+    cursor: default;
+  }
+
+  .feature-chip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(167, 139, 250, 0.45);
+    background: rgba(28, 22, 50, 0.7);
+  }
+
+  .feature-chip-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(76, 29, 149, 0.3));
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    color: var(--color-brand-300);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  /* Auth input wrapper */
+  .input-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    height: 48px;
+    background: rgba(13, 10, 26, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+  }
+
+  .input-auth:focus-within:not(.input-auth-invalid) {
+    border-color: var(--color-brand-500);
+    background: rgba(15, 10, 30, 0.85);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.16);
+  }
+
+  .input-auth-invalid {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  }
+
+  .input-auth-valid {
+    border-color: rgba(74, 222, 128, 0.4);
+  }
+
+  /* Social auth buttons */
+  .btn-social {
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(13, 10, 26, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    color: var(--color-fg-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.18s ease;
+    width: 100%;
+  }
+
+  .btn-social:hover:not(:disabled) {
+    border-color: rgba(167, 139, 250, 0.45);
+    background: rgba(28, 22, 50, 0.7);
+    transform: translateY(-1px);
+  }
+
+  .btn-social:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Auth layout grid (two-column, responsive) */
+  .auth-layout-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  @media (max-width: 980px) {
+    .auth-layout-grid {
+      grid-template-columns: 1fr;
+      padding: 28px 20px !important;
+      gap: 32px;
+    }
+
+    .auth-hero-side {
+      order: 2;
+    }
+  }
+
+  /* Animations */
+  .constellation-glow {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent 65%);
+  }
+
+  .animate-node-float {
+    animation: nodeFloat 5s ease-in-out infinite;
+  }
+
+  .animate-node-pulse {
+    animation: nodePulse 3s ease-in-out infinite;
+  }
+
+  .animate-wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: waveHand 2.4s ease-in-out infinite;
+  }
+
+  .animate-card-in {
+    animation: cardIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .animate-fill-bar {
+    animation: fillBar 1.6s ease-out forwards;
+  }
+
+  .animate-pop-in {
+    animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .animate-shake {
+    animation: shakeX 0.3s;
+  }
+}
+
+@keyframes nodeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes waveHand {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fillBar {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shakeX {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
   }
 }

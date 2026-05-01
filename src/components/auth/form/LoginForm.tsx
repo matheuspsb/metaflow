@@ -9,42 +9,7 @@ import { loginSchema, type LoginFormData } from '@/schemas/loginSchema'
 import GoogleIcon from '@/assets/svgs/icon-google.svg'
 import MicrosoftIcon from '@/assets/svgs/icon-microsoft.svg'
 import { Divider } from '@/components/ui/Divider'
-
-function SuccessState({ onBack }: { onBack: () => void }) {
-  return (
-    <div className="animate-card-in flex flex-col items-center gap-5 py-4 text-center">
-      <div
-        className="animate-pop-in grid place-items-center rounded-full"
-        style={{
-          width: 72,
-          height: 72,
-          background: 'linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.3))',
-          border: '2px solid rgba(74, 222, 128, 0.5)',
-          color: '#4ade80',
-        }}
-      >
-        <Check size={36} />
-      </div>
-      <div>
-        <h2 className="text-fg-primary text-2xl font-bold">Acesso liberado!</h2>
-        <p className="text-fg-muted mt-2 text-sm">Redirecionando para o seu painel…</p>
-      </div>
-      <div
-        className="h-1 w-full overflow-hidden rounded-full"
-        style={{ background: 'rgba(139, 92, 246, 0.18)' }}
-      >
-        <div className="animate-fill-bar bg-gradient-brand h-full w-0 rounded-full" />
-      </div>
-      <button
-        type="button"
-        onClick={onBack}
-        className="text-fg-muted border-border-default hover:text-fg-primary hover:border-border-strong rounded-lg border px-4 py-2 text-sm transition-all duration-150"
-      >
-        Voltar ao login
-      </button>
-    </div>
-  )
-}
+import { SuccessState } from './SuccessState'
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -57,7 +22,6 @@ export function LoginForm() {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors, touchedFields },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -97,14 +61,8 @@ export function LoginForm() {
     setSuccess(true)
   }
 
-  function handleBack() {
-    setSuccess(false)
-    setServerError('')
-    reset()
-  }
-
   if (success) {
-    return <SuccessState onBack={handleBack} />
+    return <SuccessState />
   }
 
   return (
