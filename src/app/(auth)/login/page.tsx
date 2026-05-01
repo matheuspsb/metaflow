@@ -9,7 +9,7 @@ export default function LoginPage() {
   return (
     <div className="bg-auth-page relative min-h-svh overflow-hidden">
       <div className="auth-grid-overlay" />
-      <div className="auth-layout-grid relative z-10 mx-auto min-h-svh max-w-330 px-14 py-12">
+      <div className="relative z-10 mx-auto grid min-h-svh max-w-330 grid-cols-1 items-center gap-20 px-14 py-12 lg:grid-cols-2 xl:gap-14">
         <HeroSection />
         <LoginCard />
       </div>

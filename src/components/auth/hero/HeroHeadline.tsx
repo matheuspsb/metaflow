@@ -2,7 +2,7 @@ export function HeroHeadline() {
   return (
     <div>
       <h2
-        className="text-fg-primary leading-[1.08] font-bold tracking-tight"
+        className="text-fg-primary text-center leading-[1.08] font-bold tracking-tight lg:text-left"
         style={{ fontSize: 'clamp(34px, 3.6vw, 46px)' }}
       >
         Conecte suas tarefas.
@@ -20,7 +20,7 @@ export function HeroHeadline() {
           Conquiste seus objetivos.
         </span>
       </h2>
-      <p className="text-fg-secondary mt-4.5 max-w-115 text-[15px] leading-relaxed">
+      <p className="text-fg-secondary lg:text-md mt-4.5 max-w-105 text-center text-sm leading-relaxed lg:max-w-115 lg:text-left">
         O MetaFlow organiza sua rotina, monitora suas metas e transforma o seu esforço diário em
         crescimento real.
       </p>

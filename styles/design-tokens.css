@@ -1,8 +1,6 @@
 /* ============================================================
-   FocusFlow Design Tokens — Tailwind CSS v4
+    Design Tokens — Tailwind CSS v4
    ============================================================
-   Importe este arquivo no seu globals.css com:
-   @import "../styles/design-tokens.css";
    
    Todos os tokens estão expostos como variáveis Tailwind v4
    via @theme, e podem ser usados como classes utilitárias:
@@ -336,27 +334,6 @@
     cursor: not-allowed;
   }
 
-  /* Auth layout grid (two-column, responsive) */
-  .auth-layout-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 56px;
-    align-items: center;
-  }
-
-  @media (max-width: 980px) {
-    .auth-layout-grid {
-      grid-template-columns: 1fr;
-      padding: 28px 20px !important;
-      gap: 32px;
-    }
-
-    .auth-hero-side {
-      order: 2;
-    }
-  }
-
-  /* Animations */
   .constellation-glow {
     background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent 65%);
   }

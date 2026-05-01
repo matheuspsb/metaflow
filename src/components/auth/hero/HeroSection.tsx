@@ -8,11 +8,11 @@ import { FeatureChip } from './FeatureChip'
 
 export function HeroSection() {
   return (
-    <section className="auth-hero-side flex max-w-140 flex-col gap-8">
+    <section className="flex flex-col items-center gap-8 lg:max-w-140 lg:items-start">
       <HeroBrand />
       <HeroHeadline />
       <HeroConstellation />
-      <div className="flex flex-wrap gap-3">
+      <div className="grid grid-cols-3 gap-2">
         <FeatureChip Icon={AutomationIcon} title="Automação" sub="inteligente" />
         <FeatureChip Icon={IntegrationIcon} title="Integrações" sub="poderosas" />
         <FeatureChip Icon={ResultsIcon} title="Resultados" sub="mensuráveis" />
