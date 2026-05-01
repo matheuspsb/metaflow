@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { loginSchema, type LoginFormData } from '@/schemas/loginSchema'
 import GoogleIcon from '@/assets/svgs/icon-google.svg'
 import MicrosoftIcon from '@/assets/svgs/icon-microsoft.svg'
+import { Divider } from '@/components/ui/Divider'
 
 function SuccessState({ onBack }: { onBack: () => void }) {
   return (
@@ -108,7 +109,6 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4.5">
-      {/* Welcome */}
       <div>
         <h1 className="text-fg-primary text-2xl font-bold tracking-tight">
           Bem-vindo de volta! <span className="animate-wave">👋</span>
@@ -116,7 +116,6 @@ export function LoginForm() {
         <p className="text-fg-muted mt-1.5 text-sm">Acesse sua conta para continuar</p>
       </div>
 
-      {/* Server error banner */}
       {serverError && (
         <div
           className="animate-shake flex items-center gap-2.5 rounded-lg px-3.5 py-3 text-sm"
@@ -132,7 +131,6 @@ export function LoginForm() {
         </div>
       )}
 
-      {/* Email field */}
       <div className="flex flex-col gap-2">
         <label htmlFor="email" className="text-fg-primary text-[13px] font-semibold">
           E-mail
@@ -168,7 +166,6 @@ export function LoginForm() {
         )}
       </div>
 
-      {/* Password field */}
       <div className="flex flex-col gap-2">
         <label htmlFor="password" className="text-fg-primary text-[13px] font-semibold">
           Senha
@@ -207,7 +204,6 @@ export function LoginForm() {
         )}
       </div>
 
-      {/* Remember + forgot */}
       <div className="flex items-center justify-between">
         <label className="text-fg-muted flex cursor-pointer items-center gap-2 text-[13px] select-none">
           <input type="checkbox" className="sr-only" {...register('remember')} />
@@ -230,7 +226,6 @@ export function LoginForm() {
         </a>
       </div>
 
-      {/* Submit button */}
       <button
         type="submit"
         disabled={!canSubmit}
@@ -254,12 +249,7 @@ export function LoginForm() {
         )}
       </button>
 
-      {/* Divider */}
-      <div className="text-fg-subtle flex items-center gap-3 text-[12px]">
-        <span className="h-px flex-1" style={{ background: 'rgba(139, 92, 246, 0.18)' }} />
-        ou continue com
-        <span className="h-px flex-1" style={{ background: 'rgba(139, 92, 246, 0.18)' }} />
-      </div>
+      <Divider label="ou continue com" />
 
       {/* Social buttons */}
       <div className="grid grid-cols-2 gap-3">
