@@ -1,45 +1,17 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 import { Eye, EyeOff, User, Lock, ArrowRight, AlertCircle, Check, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const schema = z.object({
-  email: z.string().email({ message: 'Por favor, insira um e-mail válido.' }),
-  password: z.string().min(6, { message: 'A senha precisa ter ao menos 6 caracteres.' }),
-  remember: z.boolean(),
-})
-
-type FormData = z.infer<typeof schema>
-
-function GoogleIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden>
-      <path d="M21.6 12.23c0-.74-.07-1.45-.19-2.13H12v4.03h5.4a4.62 4.62 0 0 1-2 3.03v2.52h3.24c1.9-1.74 2.99-4.31 2.99-7.45z" fill="#4285F4" />
-      <path d="M12 22c2.7 0 4.96-.9 6.62-2.42l-3.23-2.52c-.9.6-2.04.96-3.39.96-2.6 0-4.81-1.76-5.6-4.12H3.06v2.6A10 10 0 0 0 12 22z" fill="#34A853" />
-      <path d="M6.4 13.9a6.02 6.02 0 0 1 0-3.82V7.48H3.06a10 10 0 0 0 0 9.04l3.34-2.62z" fill="#FBBC05" />
-      <path d="M12 5.96c1.47 0 2.79.5 3.82 1.49l2.86-2.86A10 10 0 0 0 12 2 10 10 0 0 0 3.06 7.48L6.4 10.1c.79-2.36 3-4.13 5.6-4.13z" fill="#EA4335" />
-    </svg>
-  )
-}
-
-function MicrosoftIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden>
-      <rect x="2" y="2" width="9.5" height="9.5" fill="#F25022" />
-      <rect x="12.5" y="2" width="9.5" height="9.5" fill="#7FBA00" />
-      <rect x="2" y="12.5" width="9.5" height="9.5" fill="#00A4EF" />
-      <rect x="12.5" y="12.5" width="9.5" height="9.5" fill="#FFB900" />
-    </svg>
-  )
-}
+import { loginSchema, type LoginFormData } from '@/schemas/loginSchema'
+import GoogleIcon from '@/assets/svgs/icon-google.svg'
+import MicrosoftIcon from '@/assets/svgs/icon-microsoft.svg'
 
 function SuccessState({ onBack }: { onBack: () => void }) {
   return (
-    <div className="animate-card-in flex flex-col items-center text-center gap-5 py-4">
+    <div className="animate-card-in flex flex-col items-center gap-5 py-4 text-center">
       <div
         className="animate-pop-in grid place-items-center rounded-full"
         style={{
@@ -56,8 +28,11 @@ function SuccessState({ onBack }: { onBack: () => void }) {
         <h2 className="text-fg-primary text-2xl font-bold">Acesso liberado!</h2>
         <p className="text-fg-muted mt-2 text-sm">Redirecionando para o seu painel…</p>
       </div>
-      <div className="w-full h-1 rounded-full overflow-hidden" style={{ background: 'rgba(139, 92, 246, 0.18)' }}>
-        <div className="animate-fill-bar h-full rounded-full w-0 bg-gradient-brand" />
+      <div
+        className="h-1 w-full overflow-hidden rounded-full"
+        style={{ background: 'rgba(139, 92, 246, 0.18)' }}
+      >
+        <div className="animate-fill-bar bg-gradient-brand h-full w-0 rounded-full" />
       </div>
       <button
         type="button"
@@ -80,17 +55,18 @@ export function LoginForm() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     reset,
     formState: { errors, touchedFields },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
     defaultValues: { email: '', password: '', remember: true },
     mode: 'onBlur',
   })
 
-  const emailValue = watch('email')
-  const passwordValue = watch('password')
+  const emailValue = useWatch({ control, name: 'email' })
+  const passwordValue = useWatch({ control, name: 'password' })
+  const rememberValue = useWatch({ control, name: 'remember' })
 
   const emailTouched = !!touchedFields.email
   const passwordTouched = !!touchedFields.password
@@ -100,7 +76,7 @@ export function LoginForm() {
   const isEmailValidRaw = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue || '')
   const canSubmit = isEmailValidRaw && (passwordValue || '').length >= 6 && !submitting
 
-  async function onSubmit(data: FormData) {
+  async function onSubmit(data: LoginFormData) {
     setServerError('')
     setSubmitting(true)
     await new Promise((r) => setTimeout(r, 1400))
@@ -131,7 +107,7 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-[18px]">
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4.5">
       {/* Welcome */}
       <div>
         <h1 className="text-fg-primary text-2xl font-bold tracking-tight">
@@ -180,12 +156,10 @@ export function LoginForm() {
             type="email"
             placeholder="seu@email.com"
             autoComplete="email"
-            className="min-w-0 flex-1 bg-transparent text-[15px] outline-none placeholder:text-fg-subtle text-fg-primary"
+            className="placeholder:text-fg-subtle text-fg-primary min-w-0 flex-1 bg-transparent text-[15px] outline-none"
             {...register('email')}
           />
-          {emailIsValid && (
-            <Check size={16} className="shrink-0" style={{ color: '#4ade80' }} />
-          )}
+          {emailIsValid && <Check size={16} className="shrink-0" style={{ color: '#4ade80' }} />}
         </div>
         {emailIsInvalid && (
           <p className="animate-shake text-[12px]" style={{ color: '#ff6b8a' }}>
@@ -200,10 +174,7 @@ export function LoginForm() {
           Senha
         </label>
         <div
-          className={cn(
-            'input-auth',
-            passwordTouched && errors.password && 'input-auth-invalid',
-          )}
+          className={cn('input-auth', passwordTouched && errors.password && 'input-auth-invalid')}
         >
           <Lock
             size={18}
@@ -217,7 +188,7 @@ export function LoginForm() {
             type={showPassword ? 'text' : 'password'}
             placeholder="••••••••"
             autoComplete="current-password"
-            className="min-w-0 flex-1 bg-transparent text-[15px] outline-none placeholder:text-fg-subtle text-fg-primary"
+            className="placeholder:text-fg-subtle text-fg-primary min-w-0 flex-1 bg-transparent text-[15px] outline-none"
             {...register('password')}
           />
           <button
@@ -238,17 +209,15 @@ export function LoginForm() {
 
       {/* Remember + forgot */}
       <div className="flex items-center justify-between">
-        <label className="text-fg-muted flex cursor-pointer select-none items-center gap-2 text-[13px]">
+        <label className="text-fg-muted flex cursor-pointer items-center gap-2 text-[13px] select-none">
           <input type="checkbox" className="sr-only" {...register('remember')} />
           <span
             className={cn(
               'grid h-4 w-4 place-items-center rounded-[4px] border transition-all duration-150',
-              watch('remember')
-                ? 'border-brand-500 bg-brand-600'
-                : 'border-fg-subtle bg-transparent',
+              rememberValue ? 'border-brand-500 bg-brand-600' : 'border-fg-subtle bg-transparent',
             )}
           >
-            {watch('remember') && <Check size={10} className="text-white" />}
+            {rememberValue && <Check size={10} className="text-white" />}
           </span>
           Lembrar de mim
         </label>
@@ -266,7 +235,7 @@ export function LoginForm() {
         type="submit"
         disabled={!canSubmit}
         className={cn(
-          'bg-gradient-brand shadow-brand-glow hover:shadow-brand-glow-strong mt-1 flex h-[50px] w-full items-center justify-center gap-2.5 rounded-xl text-[15px] font-semibold text-white transition-all duration-200',
+          'bg-gradient-brand shadow-brand-glow hover:shadow-brand-glow-strong mt-1 flex h-12.5 w-full items-center justify-center gap-2.5 rounded-xl text-[15px] font-semibold text-white transition-all duration-200',
           !canSubmit && 'cursor-not-allowed opacity-50',
           canSubmit && !submitting && 'hover:-translate-y-px active:scale-[0.98]',
           submitting && 'cursor-wait',
@@ -287,15 +256,9 @@ export function LoginForm() {
 
       {/* Divider */}
       <div className="text-fg-subtle flex items-center gap-3 text-[12px]">
-        <span
-          className="h-px flex-1"
-          style={{ background: 'rgba(139, 92, 246, 0.18)' }}
-        />
+        <span className="h-px flex-1" style={{ background: 'rgba(139, 92, 246, 0.18)' }} />
         ou continue com
-        <span
-          className="h-px flex-1"
-          style={{ background: 'rgba(139, 92, 246, 0.18)' }}
-        />
+        <span className="h-px flex-1" style={{ background: 'rgba(139, 92, 246, 0.18)' }} />
       </div>
 
       {/* Social buttons */}
@@ -307,9 +270,9 @@ export function LoginForm() {
           disabled={!!socialLoading || submitting}
         >
           {socialLoading === 'google' ? (
-            <Loader2 size={14} className="animate-spin text-brand-400" />
+            <Loader2 size={14} className="text-brand-400 animate-spin" />
           ) : (
-            <GoogleIcon />
+            <GoogleIcon width={24} height={24} />
           )}
           <span>Google</span>
         </button>
@@ -320,9 +283,9 @@ export function LoginForm() {
           disabled={!!socialLoading || submitting}
         >
           {socialLoading === 'microsoft' ? (
-            <Loader2 size={14} className="animate-spin text-brand-400" />
+            <Loader2 size={14} className="text-brand-400 animate-spin" />
           ) : (
-            <MicrosoftIcon />
+            <MicrosoftIcon width={24} height={24} />
           )}
           <span>Microsoft</span>
         </button>
