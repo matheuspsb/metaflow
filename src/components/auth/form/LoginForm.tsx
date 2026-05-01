@@ -6,6 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertCircle, ArrowRight, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { loginSchema, type LoginFormData } from '@/schemas/loginSchema'
+import { useAuthStore } from '@/stores/auth-store'
+import { loginAction } from '@/app/(auth)/login/actions'
 import { Divider } from '@/components/ui/Divider'
 import { SuccessState } from './SuccessState'
 import { FormHeader } from './FormHeader'
@@ -19,6 +21,7 @@ type Provider = 'google' | 'microsoft'
 export function LoginForm() {
   const [success, setSuccess] = useState(false)
   const [socialLoading, setSocialLoading] = useState<Provider | null>(null)
+  const login = useAuthStore((s) => s.login)
 
   const {
     register,
@@ -41,11 +44,12 @@ export function LoginForm() {
 
   async function onSubmit(data: LoginFormData) {
     clearErrors('root')
-    await new Promise((r) => setTimeout(r, 1400))
-    if (data.email === 'erro@metaflow.com') {
-      setError('root', { message: 'E-mail ou senha incorretos. Tente novamente.' })
+    const result = await loginAction(data)
+    if ('error' in result) {
+      setError('root', { message: result.error })
       return
     }
+    login(result.token)
     setSuccess(true)
   }
 
