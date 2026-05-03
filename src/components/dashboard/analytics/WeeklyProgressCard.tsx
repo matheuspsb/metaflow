@@ -1,20 +1,11 @@
 import { Card } from '@/components/ui/card'
+import { WEEK_DATA } from '@/constants/weekly-progress'
 import { ChevronDown } from 'lucide-react'
-
-const WEEK_DATA = [
-  { day: 'MON', value: 22 },
-  { day: 'TUE', value: 30 },
-  { day: 'WED', value: 46 },
-  { day: 'THU', value: 63 },
-  { day: 'FRI', value: 79 },
-  { day: 'SAT', value: 78 },
-  { day: 'SUN', value: null },
-]
 
 const Y_LABELS = [100, 75, 50, 25, 0]
 
-const VB_W = 280
-const VB_H = 120
+const VIEWBOX_WIDTH = 280
+const VIEWBOX_HEIGHT = 120
 const CHART = { left: 32, right: 278, top: 20, bottom: 96 }
 
 function yPos(value: number): number {
@@ -67,7 +58,7 @@ export function WeeklyProgressCard({ className }: Props) {
       }
     >
       <svg
-        viewBox={`0 0 ${VB_W} ${VB_H}`}
+        viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
         width="100%"
         aria-label="Weekly progress chart"
         role="img"
@@ -128,9 +119,9 @@ export function WeeklyProgressCard({ className }: Props) {
           <text
             key={d.day}
             x={xPos(i)}
-            y={VB_H - 4}
+            y={VIEWBOX_HEIGHT - 4}
             textAnchor="middle"
-            fontSize="8.5"
+            fontSize="7.5"
             fill={d.value !== null ? '#a1a1aa' : '#52525b'}
           >
             {d.day}
