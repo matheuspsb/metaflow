@@ -25,10 +25,11 @@ export function ConsistencyCard({ className }: Props) {
             <div key={day.id} className="flex flex-col items-center gap-3.5 px-1.5" role="listitem">
               <span className="text-fg-muted text-xs font-medium">{day.initial}</span>
               <div
+                role="img"
+                aria-label={day.completed ? 'completed' : 'not completed'}
                 className={`h-3.5 w-3.5 rounded-full transition-colors duration-150 ${
                   day.completed ? 'bg-brand-500' : 'bg-bg-input'
                 }`}
-                aria-label={day.completed ? 'completed' : 'not completed'}
               />
             </div>
           ))}
