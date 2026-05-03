@@ -1,4 +1,9 @@
-export const WEEK_DATA = [
+export type WeekDayEntry = {
+  day: string
+  value: number | null
+}
+
+export const WEEK_DATA: WeekDayEntry[] = [
   { day: 'SEG', value: 22 },
   { day: 'TER', value: 30 },
   { day: 'QUA', value: 46 },

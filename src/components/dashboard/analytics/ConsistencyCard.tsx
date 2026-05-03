@@ -7,7 +7,7 @@ interface Props {
 
 export function ConsistencyCard({ className }: Props) {
   return (
-    <Card title="Consistency" className={className}>
+    <Card className={className}>
       <div className="flex w-full justify-between">
         <div>
           <p className="text-fg-muted pb-2 text-xs font-medium">Current Streak</p>
