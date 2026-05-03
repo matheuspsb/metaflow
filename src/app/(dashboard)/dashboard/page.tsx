@@ -3,6 +3,8 @@ import { GoalsCard } from '@/components/dashboard/goals/GoalsCard'
 import { TodaysFocusCard } from '@/components/dashboard/focus/TodaysFocusCard'
 import { CalendarCard } from '@/components/dashboard/calendar/CalendarCard'
 import { TasksCard } from '@/components/dashboard/tasks/TasksCard'
+import { WeeklyProgressCard } from '@/components/dashboard/analytics/WeeklyProgressCard'
+import { ConsistencyCard } from '@/components/dashboard/analytics/ConsistencyCard'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -18,6 +20,10 @@ export default function DashboardPage() {
         <TodaysFocusCard className="max-h-85" />
         <CalendarCard className="max-h-85" />
         <TasksCard className="xl:col-span-2" />
+        <div className="flex flex-col gap-6">
+          <WeeklyProgressCard />
+          <ConsistencyCard />
+        </div>
       </div>
     </div>
   )
