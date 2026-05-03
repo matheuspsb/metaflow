@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card'
-import { STREAK_DAYS } from './constants'
+import { STREAK_DAYS } from '../../../constants/consistency'
 
 interface Props {
   className?: string
