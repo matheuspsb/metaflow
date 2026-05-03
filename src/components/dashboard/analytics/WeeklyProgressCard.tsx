@@ -16,16 +16,16 @@ function xPos(index: number): number {
   return CHART.left + (index / (WEEK_DATA.length - 1)) * (CHART.right - CHART.left)
 }
 
-function smoothPath(pts: { x: number; y: number }[]): string {
-  if (pts.length < 2) return ''
-  let d = `M ${pts[0].x} ${pts[0].y}`
-  for (let i = 1; i < pts.length; i++) {
-    const p0 = pts[i - 1]
-    const p1 = pts[i]
-    const dx = (p1.x - p0.x) / 2.5
-    d += ` C ${p0.x + dx},${p0.y} ${p1.x - dx},${p1.y} ${p1.x},${p1.y}`
+function smoothPath(points: { x: number; y: number }[]): string {
+  if (points.length < 2) return ''
+  let path = `M ${points[0].x} ${points[0].y}`
+  for (let i = 1; i < points.length; i++) {
+    const prevPoint = points[i - 1]
+    const nextPoint = points[i]
+    const controlOffset = (nextPoint.x - prevPoint.x) / 2.5
+    path += ` C ${prevPoint.x + controlOffset},${prevPoint.y} ${nextPoint.x - controlOffset},${nextPoint.y} ${nextPoint.x},${nextPoint.y}`
   }
-  return d
+  return path
 }
 
 interface Props {
@@ -33,15 +33,15 @@ interface Props {
 }
 
 export function WeeklyProgressCard({ className }: Props) {
-  const filledPoints = WEEK_DATA.flatMap((d, i) =>
-    d.value !== null ? [{ x: xPos(i), y: yPos(d.value) }] : [],
+  const filledPoints = WEEK_DATA.flatMap((entry, index) =>
+    entry.value !== null ? [{ x: xPos(index), y: yPos(entry.value) }] : [],
   )
 
   const linePath = smoothPath(filledPoints)
-  const lastPt = filledPoints[filledPoints.length - 1]
-  const lastValue = WEEK_DATA.filter((d) => d.value !== null).at(-1)!.value as number
+  const lastPoint = filledPoints[filledPoints.length - 1]
+  const lastValue = WEEK_DATA.filter((entry) => entry.value !== null).at(-1)!.value as number
 
-  const areaPath = `${linePath} L ${lastPt.x},${CHART.bottom} L ${filledPoints[0].x},${CHART.bottom} Z`
+  const areaPath = `${linePath} L ${lastPoint.x},${CHART.bottom} L ${filledPoints[0].x},${CHART.bottom} Z`
 
   return (
     <Card
@@ -71,18 +71,18 @@ export function WeeklyProgressCard({ className }: Props) {
         </defs>
 
         {Y_LABELS.map((tick) => {
-          const y = yPos(tick)
+          const tickY = yPos(tick)
           return (
             <g key={tick}>
               <line
                 x1={CHART.left}
-                y1={y}
+                y1={tickY}
                 x2={CHART.right}
-                y2={y}
+                y2={tickY}
                 stroke="rgba(255,255,255,0.05)"
                 strokeWidth="1"
               />
-              <text x={CHART.left - 5} y={y + 3.5} textAnchor="end" fontSize="8.5" fill="#71717a">
+              <text x={CHART.left - 5} y={tickY + 3.5} textAnchor="end" fontSize="8.5" fill="#71717a">
                 {tick}%
               </text>
             </g>
@@ -100,13 +100,13 @@ export function WeeklyProgressCard({ className }: Props) {
           strokeLinejoin="round"
         />
 
-        <circle cx={lastPt.x} cy={lastPt.y} r="5.5" fill="rgba(108,76,241,0.35)" />
-        <circle cx={lastPt.x} cy={lastPt.y} r="3.5" fill="white" />
+        <circle cx={lastPoint.x} cy={lastPoint.y} r="5.5" fill="rgba(108,76,241,0.35)" />
+        <circle cx={lastPoint.x} cy={lastPoint.y} r="3.5" fill="white" />
 
-        <rect x={lastPt.x - 18} y={lastPt.y - 28} width="36" height="16" rx="5" fill="#6c4cf1" />
+        <rect x={lastPoint.x - 18} y={lastPoint.y - 28} width="36" height="16" rx="5" fill="#6c4cf1" />
         <text
-          x={lastPt.x}
-          y={lastPt.y - 16}
+          x={lastPoint.x}
+          y={lastPoint.y - 16}
           textAnchor="middle"
           fontSize="9.5"
           fontWeight="600"
@@ -115,16 +115,16 @@ export function WeeklyProgressCard({ className }: Props) {
           {lastValue}%
         </text>
 
-        {WEEK_DATA.map((d, i) => (
+        {WEEK_DATA.map((entry, index) => (
           <text
-            key={d.day}
-            x={xPos(i)}
+            key={entry.day}
+            x={xPos(index)}
             y={VIEWBOX_HEIGHT - 4}
             textAnchor="middle"
             fontSize="7.5"
-            fill={d.value !== null ? '#a1a1aa' : '#52525b'}
+            fill={entry.value !== null ? '#a1a1aa' : '#52525b'}
           >
-            {d.day}
+            {entry.day}
           </text>
         ))}
       </svg>
