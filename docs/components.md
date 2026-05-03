@@ -206,9 +206,9 @@
   /* Dots da semana */
 }
 ;<div className="flex gap-2">
-  {days.map((d, i) => (
+  {days.map((d) => (
     <div
-      key={i}
+      key={d.id}
       className={`h-2.5 w-2.5 rounded-full ${d.completed ? 'bg-brand-500' : 'bg-bg-input'}`}
     />
   ))}
@@ -481,6 +481,81 @@ function formatCardTitle(date: Date): string {
 | `isSameDay(a, b)` | Compara dois `Date` por dia de calendário |
 | `toISODate(date)` | Converte `Date` → `'YYYY-MM-DD'` sem UTC drift |
 | `toDayKey(date)` | Chave interna do calendário (não usar como ISO) |
+
+---
+
+## 20. ConsistencyCard
+
+Card de streak + dots semanais. Dados de `src/constants/consistency.ts` (`STREAK_DAYS: StreakDay[]`).
+
+```tsx
+// src/components/dashboard/analytics/ConsistencyCard.tsx
+import { STREAK_DAYS } from '@/constants/consistency'
+
+<Card title="Consistency" className={className}>
+  <div className="flex w-full justify-between">
+    {/* Streak counter */}
+    <div>
+      <p className="text-fg-muted pb-2 text-xs font-medium">Current Streak</p>
+      <div className="flex items-center gap-1">
+        <span role="img" aria-label="fire">🔥</span>
+        <span className="text-warning text-2xl font-bold leading-none">12</span>
+        <span className="text-fg-muted pb-0.5 pl-0.5 text-sm">days</span>
+      </div>
+    </div>
+
+    {/* Weekly dots */}
+    <div className="flex gap-2" role="list" aria-label="Weekly streak days">
+      {STREAK_DAYS.map((day) => (
+        <div key={day.id} className="flex flex-col items-center gap-3.5 px-1.5" role="listitem">
+          <span className="text-fg-muted text-xs font-medium">{day.initial}</span>
+          <div
+            className={`h-3.5 w-3.5 rounded-full transition-colors duration-150 ${
+              day.completed ? 'bg-brand-500' : 'bg-bg-input'
+            }`}
+            aria-label={day.completed ? 'completed' : 'not completed'}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</Card>
+```
+
+**`StreakDay` type** (em `src/constants/consistency.ts`):
+```ts
+export type StreakDay = { id: string; initial: string; completed: boolean }
+```
+
+---
+
+## 21. WeeklyProgressCard — arquitetura em 3 camadas
+
+Componentes SVG com matemática não-trivial devem ser divididos em:
+
+| Arquivo | Responsabilidade |
+|---|---|
+| `weekly-progress-utils.ts` | Constantes de layout, tipos, funções puras (`yPos`, `xPos`, `smoothPath`) |
+| `WeeklyProgressChart.tsx` | Renderiza o `<svg>` — computa pontos, consome utils |
+| `WeeklyProgressCard.tsx` | Compõe `Card` + botão de período + `<WeeklyProgressChart />` |
+
+**Regras desta camada:**
+- `CHART.right` deve ser derivado de `VIEWBOX_WIDTH`, não hardcoded
+- Um único `flatMap` produz `FilledEntry[]` com `{ x, y, value }` — evita double iteration
+- Atributos SVG usam `var(--color-*)`: `fill="var(--color-brand-500)"`, `fill="var(--color-fg-disabled)"`
+- `smoothPath` recebe `Point[]` genérico; `xPos` recebe `(index, totalItems)` sem dep. direta nos dados
+
+```ts
+// weekly-progress-utils.ts (esqueleto)
+export type Point = { x: number; y: number }
+export const VIEWBOX_WIDTH = 280
+export const VIEWBOX_HEIGHT = 120
+export const CHART = { left: 26, right: VIEWBOX_WIDTH - 2, top: 16, bottom: 96 }
+export const Y_LABELS = [100, 75, 50, 25, 0]
+export function yPos(value: number): number { ... }
+export function xPos(index: number, totalItems: number): number { ... }
+export function smoothPath(points: Point[]): string { ... }
+```
 
 ---
 

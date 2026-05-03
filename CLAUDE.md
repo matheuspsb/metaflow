@@ -51,6 +51,10 @@ Antes de qualquer task de UI, leia nesta ordem:
 
 7. **Apenas violeta como cor de marca**. Não introduza azuis, verdes, rosas como acento principal.
 
+8. **SVG `fill`/`stroke` usam CSS vars, não hex**:
+   - ✅ `fill="var(--color-brand-500)"` `fill="var(--color-fg-muted)"`
+   - ❌ `fill="#6c4cf1"` `fill="#a1a1aa"`
+
 ---
 
 ## 🎯 Workflow esperado
@@ -80,9 +84,11 @@ project-root/
 │   ├── components/
 │   │   ├── ui/               # primitivos (Button, Card, ProgressRing)
 │   │   ├── dashboard/
+│   │   │   ├── analytics/    # WeeklyProgressCard, ConsistencyCard
 │   │   │   ├── focus/        # TodaysFocusCard, TaskRow
 │   │   │   └── goals/        # GoalsCard, GoalRow, DonutProgress
 │   │   └── layout/           # Sidebar, SidebarUserPanel
+│   ├── constants/            # dados estáticos tipados (WEEK_DATA, STREAK_DAYS)
 │   ├── stores/               # Zustand stores (um arquivo por domínio)
 │   │   └── focus-store.ts    # tarefas do dia
 │   ├── hooks/                # custom hooks reutilizáveis
@@ -125,6 +131,7 @@ export const useXyzStore = create<XyzState>()(
 - Não invente tokens de cor — se faltar algo, **pergunte** e adicionamos em `design-tokens.css`
 - Não use `style={{}}` inline para coisas que poderiam ser classes Tailwind
 - Não use sombras pesadas (a profundidade vem da luminosidade do background)
+- Não coloque hex hardcoded em atributos SVG — use `var(--color-*)` (regra 8)
 
 ---
 

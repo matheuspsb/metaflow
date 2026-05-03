@@ -172,6 +172,21 @@ Disponíveis como classes utilitárias customizadas em `design-tokens.css`:
 
 ---
 
+## 🖌️ Cores em SVG
+
+Atributos SVG (`fill`, `stroke`, `stopColor`) aceitam CSS custom properties — use tokens diretamente:
+
+```svg
+fill="var(--color-brand-500)"
+stroke="var(--color-border-subtle)"
+fill="var(--color-fg-muted)"
+fill="var(--color-fg-disabled)"
+```
+
+Para opacidade em SVG use o atributo separado: `fill="var(--color-brand-500)" fillOpacity="0.35"`.
+
+---
+
 ## 🚫 Anti-patterns (não fazer)
 
 - ❌ Usar cores fora dos tokens (ex: `#FF0000`, `bg-red-500` quando se quer erro — use `text-danger`)

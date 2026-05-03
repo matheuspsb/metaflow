@@ -58,7 +58,7 @@ export function SidebarClient({ footer, children }: SidebarClientProps) {
           <span className="font-display text-fg-primary text-base font-bold">MetaFlow</span>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto px-6 pt-2">{children}</main>
       </div>
     </div>
   )
