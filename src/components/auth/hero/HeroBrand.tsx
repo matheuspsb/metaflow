@@ -7,7 +7,7 @@ export function HeroBrand() {
       <div>
         <div className="text-fg-primary text-[30px] font-extrabold tracking-tight">MetaFlow</div>
         <div
-          className="text-fg-subtle mt-1 text-[11px] tracking-[0.2em]"
+          className="text-fg-subtle xs:tracking-[0.2em] xs:mt-1 mt-0 text-[11px] tracking-normal"
           style={{ fontFamily: 'var(--font-mono)' }}
         >
           CONEXÃO. CONSTÂNCIA. <span className="text-brand-400">EVOLUÇÃO.</span>

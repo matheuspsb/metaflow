@@ -1,10 +1,7 @@
 export function HeroHeadline() {
   return (
     <div>
-      <h2
-        className="text-fg-primary text-center leading-[1.08] font-bold tracking-tight lg:text-left"
-        style={{ fontSize: 'clamp(34px, 3.6vw, 46px)' }}
-      >
+      <h2 className="text-fg-primary max-xs:text-2xl text-center text-[34px] leading-[1.08] font-bold tracking-tight lg:text-left lg:text-[clamp(34px,3.6vw,46px)]">
         Conecte suas tarefas.
         <br />
         Mantenha a constância.

@@ -12,7 +12,7 @@ export function HeroSection() {
       <HeroBrand />
       <HeroHeadline />
       <HeroConstellation />
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 max-sm:[&>*:last-child]:col-span-full max-sm:[&>*:last-child]:justify-self-center">
         <FeatureChip Icon={AutomationIcon} title="Automação" sub="inteligente" />
         <FeatureChip Icon={IntegrationIcon} title="Integrações" sub="poderosas" />
         <FeatureChip Icon={ResultsIcon} title="Resultados" sub="mensuráveis" />

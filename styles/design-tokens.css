@@ -56,6 +56,9 @@
   --color-border-strong: rgba(255, 255, 255, 0.16);
   --color-border-brand: rgba(139, 92, 246, 0.35);
 
+  /* ------------ BREAKPOINTS ------------ */
+  --breakpoint-xs: 475px;
+
   /* ------------ FEATURE CHIP ------------ */
   --color-chip-bg:          rgba(20, 16, 36, 0.5);
   --color-chip-bg-hover:    rgba(28, 22, 50, 0.7);
