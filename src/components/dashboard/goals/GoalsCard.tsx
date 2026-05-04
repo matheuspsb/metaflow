@@ -28,7 +28,7 @@ export function GoalsCard({
   return (
     <Card
       className={className}
-      title="Goals Overview"
+      title="Visão Geral"
       action={
         <Link
           as="/metas"

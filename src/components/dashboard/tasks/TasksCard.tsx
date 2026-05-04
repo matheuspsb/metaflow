@@ -40,7 +40,7 @@ export function TasksCard({ className }: TasksCardProps) {
   )
 
   return (
-    <Card title="Tasks" action={headerActions} className={className}>
+    <Card title="Tarefas" action={headerActions} className={className}>
       <div className="bg-bg-input mb-4 flex items-center gap-1 rounded-lg p-1">
         {TABS.map((tab) => (
           <button

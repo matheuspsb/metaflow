@@ -10,7 +10,7 @@ export function WeeklyProgressCard({ className }: Props) {
   return (
     <Card
       className={className}
-      title="Weekly Progress"
+      title="Progresso Semanal"
       action={
         <button
           aria-label="Select time period"

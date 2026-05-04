@@ -27,7 +27,7 @@ export function TodaysFocusCard({ className }: TodaysFocusCardProps) {
   )
 
   function formatCardTitle(date: Date): string {
-    if (isSameDay(date, today())) return "Today's Focus"
+    if (isSameDay(date, today())) return 'Foco de Hoje'
     return date.toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })
   }
 
