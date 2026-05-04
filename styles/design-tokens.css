@@ -56,6 +56,13 @@
   --color-border-strong: rgba(255, 255, 255, 0.16);
   --color-border-brand: rgba(139, 92, 246, 0.35);
 
+  /* ------------ FEATURE CHIP ------------ */
+  --color-chip-bg:          rgba(20, 16, 36, 0.5);
+  --color-chip-bg-hover:    rgba(28, 22, 50, 0.7);
+  --color-chip-border:      rgba(139, 92, 246, 0.18);
+  --color-chip-border-hover: rgba(167, 139, 250, 0.45);
+  --color-chip-icon-border: rgba(167, 139, 250, 0.25);
+
   /* ------------ SEMANTIC / FUNCIONAL ------------ */
   --color-success: #22c55e;
   --color-warning: #f59e0b;
@@ -243,38 +250,6 @@
     box-shadow:
       0 8px 24px rgba(124, 58, 237, 0.4),
       inset 0 0 12px rgba(167, 139, 250, 0.12);
-  }
-
-  /* Feature chips */
-  .feature-chip {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: rgba(20, 16, 36, 0.5);
-    border: 1px solid rgba(139, 92, 246, 0.18);
-    border-radius: 14px;
-    backdrop-filter: blur(8px);
-    transition: all 0.25s ease;
-    cursor: default;
-  }
-
-  .feature-chip:hover {
-    transform: translateY(-2px);
-    border-color: rgba(167, 139, 250, 0.45);
-    background: rgba(28, 22, 50, 0.7);
-  }
-
-  .feature-chip-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(76, 29, 149, 0.3));
-    border: 1px solid rgba(167, 139, 250, 0.25);
-    color: var(--color-brand-300);
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
   }
 
   /* Auth input wrapper */
