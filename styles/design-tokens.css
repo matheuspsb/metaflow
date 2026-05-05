@@ -1,19 +1,10 @@
-/* ============================================================
-    Design Tokens — Tailwind CSS v4
-   ============================================================
-   
-   Todos os tokens estão expostos como variáveis Tailwind v4
-   via @theme, e podem ser usados como classes utilitárias:
-   bg-bg-base, text-fg-primary, border-border-subtle, etc.
-   ============================================================ */
-
 @import 'tailwindcss';
 
 @theme {
   /* ------------ BACKGROUNDS ------------ */
-  --color-bg-base: #0a0a0f; /* fundo principal da página */
-  --color-bg-sidebar: #0d0d14; /* sidebar */
-  --color-bg-card: #13131c; /* cards principais */
+  --color-bg-base: #0a0716; /* fundo principal da página */
+  --color-bg-sidebar: #0f0a1f; /* sidebar */
+  --color-bg-card: #14102b; /* cards principais */
   --color-bg-card-elevated: #161622; /* cards com leve elevação */
   --color-bg-card-hover: #1c1c28; /* hover/active de cards */
   --color-bg-input: #1f1f2b; /* search bar, inputs */
@@ -60,9 +51,9 @@
   --breakpoint-xs: 475px;
 
   /* ------------ FEATURE CHIP ------------ */
-  --color-chip-bg:          rgba(20, 16, 36, 0.5);
-  --color-chip-bg-hover:    rgba(28, 22, 50, 0.7);
-  --color-chip-border:      rgba(139, 92, 246, 0.18);
+  --color-chip-bg: rgba(20, 16, 36, 0.5);
+  --color-chip-bg-hover: rgba(28, 22, 50, 0.7);
+  --color-chip-border: rgba(139, 92, 246, 0.18);
   --color-chip-border-hover: rgba(167, 139, 250, 0.45);
   --color-chip-icon-border: rgba(167, 139, 250, 0.25);
 
