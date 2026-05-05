@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { DEFAULT_TASKS, type TaskCategoryId } from '@/lib/constants'
+import { DEFAULT_TASKS, type TaskCategory } from '@/lib/constants'
 
 export interface TaskEntry {
   id: string
   title: string
-  category: TaskCategoryId
+  category: TaskCategory
   dueDate: string // ISO date string: 'YYYY-MM-DD'
   done: boolean
   flagged: boolean
@@ -26,7 +26,9 @@ export const useTasksStore = create<TasksState>()(
       toggleTask: (id) =>
         set(
           (state) => ({
-            tasks: state.tasks.map((task) => (task.id === id ? { ...task, done: !task.done } : task)),
+            tasks: state.tasks.map((task) =>
+              task.id === id ? { ...task, done: !task.done } : task,
+            ),
           }),
           false,
           'tasks/toggleTask',
@@ -35,7 +37,9 @@ export const useTasksStore = create<TasksState>()(
       toggleFlag: (id) =>
         set(
           (state) => ({
-            tasks: state.tasks.map((task) => (task.id === id ? { ...task, flagged: !task.flagged } : task)),
+            tasks: state.tasks.map((task) =>
+              task.id === id ? { ...task, flagged: !task.flagged } : task,
+            ),
           }),
           false,
           'tasks/toggleFlag',

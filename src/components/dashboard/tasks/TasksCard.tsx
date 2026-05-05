@@ -6,9 +6,9 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { TaskItem } from './TaskItem'
 import { useTasksStore } from '@/stores/tasks-store'
-import { TASK_CATEGORIES, type TaskCategoryId } from '@/lib/constants'
+import { TASK_CATEGORIES, type TaskCategory } from '@/lib/constants'
 
-type FilterTab = 'All' | TaskCategoryId
+type FilterTab = 'All' | TaskCategory
 
 const TABS: FilterTab[] = ['All', ...TASK_CATEGORIES.map((category) => category.id)]
 
