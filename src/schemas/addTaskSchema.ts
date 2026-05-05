@@ -1,7 +1,7 @@
 import { z } from 'zod'
-import { TASK_CATEGORIES } from '@/lib/constants'
+import { TASK_CATEGORIES, type TaskCategory } from '@/lib/constants'
 
-const categoryIds = TASK_CATEGORIES.map((c) => c.id) as [string, ...string[]]
+const categoryIds = TASK_CATEGORIES.map((c) => c.id) as [TaskCategory, ...TaskCategory[]]
 
 export const addTaskSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100),
