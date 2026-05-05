@@ -15,7 +15,7 @@ export function Greeting({ name }: GreetingProps) {
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold tracking-tight">
+      <h1 className="font-display text-3xl font-semibold tracking-tight text-fg-primary">
         {greeting}, {name} 👋
       </h1>
       <p className="text-fg-muted mt-1">Vamos focar no que realmente importa hoje.</p>

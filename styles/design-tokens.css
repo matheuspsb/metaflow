@@ -5,10 +5,10 @@
   --color-bg-base: #0a0716; /* fundo principal da página */
   --color-bg-sidebar: #0f0a1f; /* sidebar */
   --color-bg-card: #14102b; /* cards principais */
-  --color-bg-card-elevated: #161622; /* cards com leve elevação */
-  --color-bg-card-hover: #1c1c28; /* hover/active de cards */
-  --color-bg-input: #1f1f2b; /* search bar, inputs */
-  --color-bg-tag: #252533; /* tags Work/Health/Personal */
+  --color-bg-card-elevated: #1a1438; /* cards com leve elevação */
+  --color-bg-card-hover: #1f1940; /* hover/active de cards */
+  --color-bg-input: #1c1838; /* search bar, inputs */
+  --color-bg-tag: #221d3c; /* tags Work/Health/Personal */
 
   /* ------------ BRAND / DEEP PURPLE ------------ */
   --color-brand-50: #f5f3ff;
@@ -35,16 +35,16 @@
   --color-accent-fuchsia: #a855f7;
 
   /* ------------ FOREGROUND / TEXT ------------ */
-  --color-fg-primary: #f4f4f5; /* títulos, valores */
-  --color-fg-secondary: #d4d4d8; /* texto principal */
-  --color-fg-muted: #a1a1aa; /* labels, meta */
-  --color-fg-subtle: #71717a; /* hint, placeholder */
-  --color-fg-disabled: #52525b; /* dias fora do mês */
+  --color-fg-primary: #f4f1ff; /* títulos, valores */
+  --color-fg-secondary: #b8b1d4; /* texto principal */
+  --color-fg-muted: #9490b0; /* labels, meta */
+  --color-fg-subtle: #7a7393; /* hint, placeholder */
+  --color-fg-disabled: #4d4868; /* dias fora do mês */
 
   /* ------------ BORDERS ------------ */
-  --color-border-subtle: rgba(255, 255, 255, 0.06);
-  --color-border-default: rgba(255, 255, 255, 0.1);
-  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-border-subtle: rgba(139, 92, 246, 0.14);
+  --color-border-default: rgba(139, 92, 246, 0.20);
+  --color-border-strong: rgba(167, 139, 250, 0.32);
   --color-border-brand: rgba(139, 92, 246, 0.35);
 
   /* ------------ BREAKPOINTS ------------ */
