@@ -28,7 +28,7 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps
     formState: { errors, isValid },
   } = useForm<AddTaskFormData>({
     resolver: zodResolver(addTaskSchema),
-    defaultValues: { title: '', category: '', time: defaultTime() },
+    defaultValues: { title: '', category: undefined, time: defaultTime() },
     mode: 'onChange',
   })
 
@@ -43,12 +43,12 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps
       dueDate: defaultDate,
       done: false,
     })
-    reset({ title: '', category: '', time: defaultTime() })
+    reset({ title: '', category: undefined, time: defaultTime() })
     onClose()
   }
 
   function handleClose() {
-    reset({ title: '', category: '', time: defaultTime() })
+    reset({ title: '', category: undefined, time: defaultTime() })
     onClose()
   }
 
