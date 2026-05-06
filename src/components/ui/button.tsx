@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'dashed'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'dashed'
   size?: 'sm' | 'md' | 'lg'
   leftIcon?: ReactNode
   rightIcon?: ReactNode
@@ -12,6 +12,7 @@ const variantStyles = {
   primary: 'border border-transparent bg-gradient-brand text-white shadow-brand-glow hover:shadow-brand-glow-strong',
   secondary:
     'bg-bg-input text-fg-secondary border border-border-subtle hover:bg-bg-card-hover hover:text-fg-primary',
+  outline: 'border border-border-subtle bg-transparent text-fg-primary hover:border-border-strong',
   ghost: 'text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary',
   dashed:
     'border border-dashed border-border-subtle text-fg-muted hover:bg-bg-card-hover hover:text-fg-primary',
