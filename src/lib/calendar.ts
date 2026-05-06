@@ -22,6 +22,12 @@ export function toDayKey(date: Date): string {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
 }
 
+export function getWeekStart(date: Date): Date {
+  const start = new Date(date)
+  start.setDate(date.getDate() - date.getDay())
+  return start
+}
+
 export function isSameDay(a: Date, b: Date): boolean {
   return (
     a.getFullYear() === b.getFullYear() &&

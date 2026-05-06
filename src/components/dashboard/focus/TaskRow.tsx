@@ -1,11 +1,12 @@
 'use client'
 
 import { Check } from 'lucide-react'
+import type { TaskCategory } from '@/lib/constants'
 
 export interface Task {
   id: string
   title: string
-  category: string
+  category: TaskCategory
   time: string
   dueDate: string
   done?: boolean

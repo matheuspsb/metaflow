@@ -132,6 +132,7 @@ export const useXyzStore = create<XyzState>()(
 - Não use `style={{}}` inline para coisas que poderiam ser classes Tailwind
 - Não use sombras pesadas (a profundidade vem da luminosidade do background)
 - Não coloque hex hardcoded em atributos SVG — use `var(--color-*)` (regra 8)
+- **Nunca use nomes de variável ou parâmetro com uma única letra** (ex: `d`, `e`, `c`, `i`, `v`). Use sempre nomes descritivos: `day`, `event`, `category`, `index`, `value`. A exceção são índices em expressões matemáticas puras (ex: `x`, `y` em cálculos geométricos).
 
 ---
 
