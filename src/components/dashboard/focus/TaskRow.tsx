@@ -1,7 +1,7 @@
 'use client'
 
+import { TaskCategory } from '@/types/category.types'
 import { Check } from 'lucide-react'
-import type { TaskCategory } from '@/lib/constants'
 
 export interface Task {
   id: string

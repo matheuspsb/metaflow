@@ -6,7 +6,8 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { TaskItem } from './TaskItem'
 import { useTasksStore } from '@/stores/tasks-store'
-import { TASK_CATEGORIES, type TaskCategory } from '@/lib/constants'
+import { TASK_CATEGORIES } from '@/lib/constants'
+import { TaskCategory } from '@/types/category.types'
 
 type FilterTab = 'All' | TaskCategory
 

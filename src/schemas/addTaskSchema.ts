@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { TASK_CATEGORIES, type TaskCategory } from '@/lib/constants'
+import { TASK_CATEGORIES } from '@/lib/constants'
+import { TaskCategory } from '@/types/category.types'
 
 const categoryIds = TASK_CATEGORIES.map((c) => c.id) as [TaskCategory, ...TaskCategory[]]
 

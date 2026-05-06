@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { DEFAULT_TASKS, type TaskCategory } from '@/lib/constants'
+import { DEFAULT_TASKS } from '@/lib/constants'
+import { TaskCategory } from '@/types/category.types'
 
 export interface TaskEntry {
   id: string

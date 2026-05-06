@@ -1,4 +1,5 @@
-import { TASK_CATEGORIES, TaskCategory } from '@/lib/constants'
+import { TASK_CATEGORIES } from '@/lib/constants'
+import { TaskCategory } from '@/types/category.types'
 
 export function CategoryCard() {
   const CAT_COUNTS: Partial<Record<TaskCategory, number>> = {
