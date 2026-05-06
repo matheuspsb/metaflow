@@ -34,6 +34,19 @@ export async function loginAction(data: unknown): Promise<LoginResult> {
   return { token, remember }
 }
 
+export async function socialLoginAction(provider: string): Promise<{ token: string }> {
+  const token = `mock_${provider}_${crypto.randomUUID()}`
+  const cookieStore = await cookies()
+  cookieStore.set(COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7,
+  })
+  return { token }
+}
+
 export async function logoutAction() {
   const cookieStore = await cookies()
   cookieStore.delete(COOKIE_NAME)

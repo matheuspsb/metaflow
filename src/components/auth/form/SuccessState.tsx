@@ -1,11 +1,6 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
 import { Check } from 'lucide-react'
 
 export function SuccessState() {
-  const router = useRouter()
-
   return (
     <div className="animate-card-in flex flex-col items-center gap-5 py-4 text-center">
       <div
@@ -28,10 +23,7 @@ export function SuccessState() {
         className="h-1 w-full overflow-hidden rounded-full"
         style={{ background: 'rgba(139, 92, 246, 0.18)' }}
       >
-        <div
-          className="animate-fill-bar bg-gradient-brand h-full w-0 rounded-full"
-          onAnimationEnd={() => router.push('/dashboard')}
-        />
+        <div className="animate-fill-bar bg-gradient-brand h-full w-0 rounded-full" />
       </div>
     </div>
   )

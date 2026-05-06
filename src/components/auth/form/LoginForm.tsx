@@ -1,13 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertCircle, ArrowRight, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { loginSchema, type LoginFormData } from '@/schemas/loginSchema'
 import { useAuthStore } from '@/stores/auth-store'
-import { loginAction } from '@/app/(auth)/login/actions'
+import { loginAction, socialLoginAction } from '@/app/(auth)/login/actions'
 import { Divider } from '@/components/ui/Divider'
 import { SuccessState } from './SuccessState'
 import { FormHeader } from './FormHeader'
@@ -18,10 +19,13 @@ import { SocialButtons } from './SocialButtons'
 
 type Provider = 'google' | 'microsoft'
 
+const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms))
+
 export function LoginForm() {
   const [success, setSuccess] = useState(false)
   const [socialLoading, setSocialLoading] = useState<Provider | null>(null)
   const login = useAuthStore((s) => s.login)
+  const router = useRouter()
 
   const {
     register,
@@ -42,6 +46,13 @@ export function LoginForm() {
 
   const canSubmit = !isSubmitting && emailValue.length > 0 && passwordValue.length >= 6
 
+  async function handleSuccess(token: string) {
+    login(token)
+    setSuccess(true)
+    await sleep(2000)
+    router.push('/dashboard')
+  }
+
   async function onSubmit(data: LoginFormData) {
     clearErrors('root')
     const result = await loginAction(data)
@@ -49,16 +60,15 @@ export function LoginForm() {
       setError('root', { message: result.error })
       return
     }
-    login(result.token)
-    setSuccess(true)
+    await handleSuccess(result.token)
   }
 
   async function onSocial(provider: Provider) {
     if (socialLoading || isSubmitting) return
     setSocialLoading(provider)
-    await new Promise((r) => setTimeout(r, 1200))
+    const result = await socialLoginAction(provider)
     setSocialLoading(null)
-    setSuccess(true)
+    await handleSuccess(result.token)
   }
 
   if (success) return <SuccessState />
