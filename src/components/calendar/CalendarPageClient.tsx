@@ -1,5 +1,6 @@
 'use client'
 
+import { CalendarBottomGrid } from '@/components/calendar/CalendarBottomGrid'
 import { CalendarHeader } from '@/components/calendar/CalendarHeader'
 import { CategoryCard } from '@/components/calendar/CategoryCard'
 import { UpcomingListCard } from '@/components/calendar/UpComingListCard'
@@ -56,32 +57,7 @@ export function CalendarPageClient() {
           />
           <WeekView selected={selectedDate} today={today} />
         </div>
-        <div className="bottom-grid">
-          <div className="card stat-card">
-            <div className="card-title">Esta semana</div>
-            <div className="stat-row">
-              <div className="stat">
-                <div className="stat-num">16</div>
-                <div className="stat-label">Eventos</div>
-              </div>
-              <div className="stat">
-                <div className="stat-num">12h</div>
-                <div className="stat-label">Foco</div>
-              </div>
-              <div className="stat">
-                <div className="stat-num">85%</div>
-                <div className="stat-label">Cumprido</div>
-              </div>
-            </div>
-          </div>
-          <div className="card quote-card">
-            <div className="quote-mark">&quot</div>
-            <div className="quote-text">
-              A maneira de começar é parar de falar e começar a fazer.
-            </div>
-            <div className="quote-author">— Walt Disney</div>
-          </div>
-        </div>
+        <CalendarBottomGrid />
       </div>
     </div>
   )
