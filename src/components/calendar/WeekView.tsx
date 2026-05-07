@@ -24,8 +24,8 @@ export function WeekView({ selected, today }: WeekViewProps) {
   const hours = Array.from({ length: GRID_HOURS }, (_unused, index) => index + GRID_FIRST_HOUR)
 
   return (
-    <div className="flex flex-col">
-      <div className="border-border-subtle grid grid-cols-[56px_repeat(7,1fr)] border-b">
+    <div className="max-h-135 overflow-y-auto [scrollbar-gutter:stable]">
+      <div className="border-border-subtle bg-bg-card sticky top-0 z-10 grid grid-cols-[56px_repeat(7,1fr)] border-b">
         <div />
         {days.map((day) => {
           const isToday = isSameDay(day, today)
@@ -53,11 +53,11 @@ export function WeekView({ selected, today }: WeekViewProps) {
           )
         })}
       </div>
-      <div className="grid max-h-135 grid-cols-[56px_repeat(7,1fr)] overflow-y-auto">
-        <div className="flex flex-col pt-2">
+      <div className="grid grid-cols-[56px_repeat(7,1fr)]">
+        <div className="flex flex-col">
           {hours.map((hour) => (
             <div key={hour} className="border-border-subtle relative h-14 border-b">
-              <span className="bg-bg-card text-fg-muted absolute -top-2 right-2 px-1 text-[10px] font-semibold">
+              <span className="bg-bg-card text-fg-muted absolute top-0 right-2 px-1 text-[10px] font-semibold">
                 {String(hour).padStart(2, '0')}:00
               </span>
             </div>

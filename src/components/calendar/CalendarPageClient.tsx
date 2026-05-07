@@ -46,7 +46,7 @@ export function CalendarPageClient() {
       </div>
 
       <div className="flex min-w-0 flex-col gap-4.5">
-        <div className="card big-card">
+        <div className="bg-bg-card border-border-subtle overflow-hidden rounded-xl border">
           <CalendarHeader
             selected={selectedDate}
             view={view}
