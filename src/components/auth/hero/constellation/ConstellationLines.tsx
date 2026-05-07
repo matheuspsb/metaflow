@@ -9,13 +9,13 @@ export function ConstellationLines() {
     >
       <defs>
         <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#7c3aed" stopOpacity="0.1" />
-          <stop offset="0.5" stopColor="#a78bfa" stopOpacity="0.6" />
-          <stop offset="1" stopColor="#7c3aed" stopOpacity="0.1" />
+          <stop offset="0" stopColor="var(--color-brand-500)" stopOpacity="0.1" />
+          <stop offset="0.5" stopColor="var(--color-brand-400)" stopOpacity="0.6" />
+          <stop offset="1" stopColor="var(--color-brand-500)" stopOpacity="0.1" />
         </linearGradient>
         <radialGradient id="dotGrad">
-          <stop offset="0" stopColor="#e9d5ff" stopOpacity="1" />
-          <stop offset="1" stopColor="#a78bfa" stopOpacity="0" />
+          <stop offset="0" stopColor="var(--color-brand-200)" stopOpacity="1" />
+          <stop offset="1" stopColor="var(--color-brand-400)" stopOpacity="0" />
         </radialGradient>
       </defs>
 
