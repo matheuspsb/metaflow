@@ -2,6 +2,12 @@ import { EVENTS } from '@/constants/calendar-events'
 import { getWeekStart, isSameDay, toISODate } from '@/lib/calendar'
 import { CATEGORY_MAP, DAY_INITIALS } from '@/lib/constants'
 
+const GRID_FIRST_HOUR = 0
+const GRID_LAST_HOUR = 24
+const GRID_HOURS = GRID_LAST_HOUR - GRID_FIRST_HOUR
+const ROW_PX = 56
+const MIN_EVENT_HEIGHT = 20
+
 interface WeekViewProps {
   selected: Date
   today: Date
@@ -9,12 +15,13 @@ interface WeekViewProps {
 
 export function WeekView({ selected, today }: WeekViewProps) {
   const start = getWeekStart(selected)
-  const days = Array.from({ length: 7 }, (__unused, dayOffset) => {
+  const days = Array.from({ length: 7 }, (_unused, dayOffset) => {
     const date = new Date(start)
     date.setDate(start.getDate() + dayOffset)
     return date
   })
-  const hours = Array.from({ length: 13 }, (__unused, index) => index + 7)
+
+  const hours = Array.from({ length: GRID_HOURS }, (_unused, index) => index + GRID_FIRST_HOUR)
 
   return (
     <div className="flex flex-col">
@@ -47,7 +54,7 @@ export function WeekView({ selected, today }: WeekViewProps) {
         })}
       </div>
       <div className="grid max-h-135 grid-cols-[56px_repeat(7,1fr)] overflow-y-auto">
-        <div className="flex flex-col">
+        <div className="flex flex-col pt-2">
           {hours.map((hour) => (
             <div key={hour} className="border-border-subtle relative h-14 border-b">
               <span className="bg-bg-card text-fg-muted absolute -top-2 right-2 px-1 text-[10px] font-semibold">
@@ -65,8 +72,22 @@ export function WeekView({ selected, today }: WeekViewProps) {
               ))}
               {dayEvents.map((event) => {
                 const [eventHour, eventMinute] = event.time.split(':').map(Number)
-                const top = (eventHour - 7 + eventMinute / 60) * 56
-                const height = (event.dur / 60) * 56 - 4
+                const eventStartMinutes = eventHour * 60 + eventMinute
+                const eventEndMinutes = eventStartMinutes + event.dur
+                const gridStartMinutes = GRID_FIRST_HOUR * 60
+                const gridEndMinutes = GRID_LAST_HOUR * 60
+
+                if (eventStartMinutes >= gridEndMinutes || eventEndMinutes <= gridStartMinutes) {
+                  return null
+                }
+
+                const clampedStart = Math.max(eventStartMinutes, gridStartMinutes)
+                const clampedEnd = Math.min(eventEndMinutes, gridEndMinutes)
+                const top = ((clampedStart - gridStartMinutes) / 60) * ROW_PX
+                const height = Math.max(
+                  ((clampedEnd - clampedStart) / 60) * ROW_PX - 4,
+                  MIN_EVENT_HEIGHT,
+                )
                 const color = CATEGORY_MAP[event.cat].color
                 return (
                   <div
