@@ -79,12 +79,7 @@ export function LoginForm() {
 
       {errors.root?.message && (
         <div
-          className="animate-shake flex items-center gap-2.5 rounded-lg px-3.5 py-3 text-sm"
-          style={{
-            background: 'rgba(255, 107, 138, 0.1)',
-            border: '1px solid rgba(255, 107, 138, 0.3)',
-            color: '#ffb8c5',
-          }}
+          className="animate-shake border-danger/30 bg-danger/10 text-danger flex items-center gap-2.5 rounded-lg border px-3.5 py-3 text-sm"
           role="alert"
         >
           <AlertCircle size={16} className="shrink-0" />
