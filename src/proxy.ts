@@ -3,7 +3,16 @@ import { NextRequest, NextResponse } from 'next/server'
 const COOKIE_NAME = 'mf-auth-token'
 
 const publicRoutes = ['/login']
-const protectedRoutes = ['/dashboard']
+const protectedRoutes = [
+  '/dashboard',
+  '/metas',
+  '/tarefas',
+  '/calendario',
+  '/rotina',
+  '/analytics',
+  '/notas',
+  '/integracoes',
+]
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
