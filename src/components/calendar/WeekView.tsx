@@ -96,7 +96,7 @@ export function WeekView({ selected, today }: WeekViewProps) {
                     style={{
                       top,
                       height,
-                      background: `linear-gradient(135deg, ${color}33, ${color}11)`,
+                      background: `linear-gradient(135deg, color-mix(in srgb, ${color} 20%, transparent), color-mix(in srgb, ${color} 7%, transparent))`,
                       borderLeft: `3px solid ${color}`,
                     }}
                   >

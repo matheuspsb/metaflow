@@ -57,6 +57,13 @@
   --color-chip-border-hover: rgba(167, 139, 250, 0.45);
   --color-chip-icon-border: rgba(167, 139, 250, 0.25);
 
+  /* ------------ CATEGORY COLORS ------------ */
+  --color-cat-work: #a78bfa;
+  --color-cat-health: #4ade80;
+  --color-cat-personal: #fbbf24;
+  --color-cat-study: #60a5fa;
+  --color-cat-finance: #f472b6;
+
   /* ------------ SEMANTIC / FUNCIONAL ------------ */
   --color-success: #22c55e;
   --color-warning: #f59e0b;

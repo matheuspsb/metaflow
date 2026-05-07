@@ -9,17 +9,16 @@ export interface CategoryDef {
 }
 
 export const TASK_CATEGORIES: CategoryDef[] = [
-  { id: 'Work', label: 'Trabalho', color: '#a78bfa', Icon: Briefcase },
-  { id: 'Health', label: 'Saúde', color: '#4ade80', Icon: Heart },
-  { id: 'Personal', label: 'Pessoal', color: '#fbbf24', Icon: User },
-  { id: 'Study', label: 'Estudo', color: '#60a5fa', Icon: BookOpen },
-  { id: 'Finance', label: 'Finanças', color: '#f472b6', Icon: DollarSign },
+  { id: 'Work', label: 'Trabalho', color: 'var(--color-cat-work)', Icon: Briefcase },
+  { id: 'Health', label: 'Saúde', color: 'var(--color-cat-health)', Icon: Heart },
+  { id: 'Personal', label: 'Pessoal', color: 'var(--color-cat-personal)', Icon: User },
+  { id: 'Study', label: 'Estudo', color: 'var(--color-cat-study)', Icon: BookOpen },
+  { id: 'Finance', label: 'Finanças', color: 'var(--color-cat-finance)', Icon: DollarSign },
 ]
 
-export const CATEGORY_MAP = Object.fromEntries(TASK_CATEGORIES.map((c) => [c.id, c])) as Record<
-  TaskCategory,
-  CategoryDef
->
+export const CATEGORY_MAP = Object.fromEntries(
+  TASK_CATEGORIES.map((category) => [category.id, category]),
+) as Record<TaskCategory, CategoryDef>
 
 export const DEFAULT_TASKS: Array<{
   id: string
