@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { Activity, useState } from 'react'
 import { ArrowUpDown, ListFilter } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -25,11 +25,6 @@ export function TasksCard({ className }: TasksCardProps) {
   const referenceDate = today()
 
   const [activeTab, setActiveTab] = useState<FilterTab>('All')
-
-  const filteredTasks = useMemo(
-    () => (activeTab === 'All' ? tasks : tasks.filter((task) => task.category === activeTab)),
-    [tasks, activeTab],
-  )
 
   const headerActions = (
     <div className="flex items-center gap-2">
@@ -60,15 +55,22 @@ export function TasksCard({ className }: TasksCardProps) {
         ))}
       </div>
 
-      <ul className="divide-border-subtle divide-y max-h-66 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border-subtle [&::-webkit-scrollbar-thumb]:rounded-full">
-        {filteredTasks.length === 0 ? (
-          <li className="text-fg-muted py-8 text-center text-sm">No tasks in this category.</li>
-        ) : (
-          filteredTasks.map((task) => (
-            <TaskItem key={task.id} task={task} onToggle={toggleTask} onFlag={toggleFlag} referenceDate={referenceDate} />
-          ))
-        )}
-      </ul>
+      {TABS.map((tab) => {
+        const tabTasks = tab === 'All' ? tasks : tasks.filter((task) => task.category === tab)
+        return (
+          <Activity key={tab} mode={activeTab === tab ? 'visible' : 'hidden'}>
+            <ul className="divide-border-subtle divide-y max-h-66 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border-subtle [&::-webkit-scrollbar-thumb]:rounded-full">
+              {tabTasks.length === 0 ? (
+                <li className="text-fg-muted py-8 text-center text-sm">No tasks in this category.</li>
+              ) : (
+                tabTasks.map((task) => (
+                  <TaskItem key={task.id} task={task} onToggle={toggleTask} onFlag={toggleFlag} referenceDate={referenceDate} />
+                ))
+              )}
+            </ul>
+          </Activity>
+        )
+      })}
     </Card>
   )
 }
