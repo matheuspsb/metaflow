@@ -24,7 +24,10 @@ export function CalendarCard({
   const selectedDate = useCalendarStore((s) => s.selectedDate)
   const viewMonth = useCalendarStore((s) => s.viewDate.getMonth())
   const viewYear = useCalendarStore((s) => s.viewDate.getFullYear())
-  const { setSelectedDate, goToPrevMonth, goToNextMonth, goToToday } = useCalendarStore.getState()
+  const setSelectedDate = useCalendarStore((state) => state.setSelectedDate)
+  const goToPrevMonth = useCalendarStore((state) => state.goToPrevMonth)
+  const goToNextMonth = useCalendarStore((state) => state.goToNextMonth)
+  const goToToday = useCalendarStore((state) => state.goToToday)
 
   const days = useMemo(
     () => getCalendarDays(new Date(viewYear, viewMonth, 1)),

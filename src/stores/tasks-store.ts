@@ -1,54 +1,58 @@
 import { create } from 'zustand'
-import { devtools } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 import { DEFAULT_TASKS } from '@/lib/constants'
-import { TaskCategory } from '@/types/category.types'
+import type { Task } from '@/types/task.types'
 
-export interface TaskEntry {
-  id: string
-  title: string
-  category: TaskCategory
-  dueDate: string // ISO date string: 'YYYY-MM-DD'
-  done: boolean
-  flagged: boolean
-}
+export type { Task }
 
 interface TasksState {
-  tasks: TaskEntry[]
+  tasks: Task[]
   toggleTask: (id: string) => void
   toggleFlag: (id: string) => void
-  addTask: (task: TaskEntry) => void
+  addTask: (task: Task) => void
+  removeTask: (id: string) => void
 }
 
 export const useTasksStore = create<TasksState>()(
   devtools(
-    (set) => ({
-      tasks: DEFAULT_TASKS,
+    persist(
+      (set) => ({
+        tasks: DEFAULT_TASKS,
 
-      toggleTask: (id) =>
-        set(
-          (state) => ({
-            tasks: state.tasks.map((task) =>
-              task.id === id ? { ...task, done: !task.done } : task,
-            ),
-          }),
-          false,
-          'tasks/toggleTask',
-        ),
+        toggleTask: (id) =>
+          set(
+            (state) => ({
+              tasks: state.tasks.map((task) =>
+                task.id === id ? { ...task, done: !task.done } : task,
+              ),
+            }),
+            false,
+            'tasks/toggleTask',
+          ),
 
-      toggleFlag: (id) =>
-        set(
-          (state) => ({
-            tasks: state.tasks.map((task) =>
-              task.id === id ? { ...task, flagged: !task.flagged } : task,
-            ),
-          }),
-          false,
-          'tasks/toggleFlag',
-        ),
+        toggleFlag: (id) =>
+          set(
+            (state) => ({
+              tasks: state.tasks.map((task) =>
+                task.id === id ? { ...task, flagged: !task.flagged } : task,
+              ),
+            }),
+            false,
+            'tasks/toggleFlag',
+          ),
 
-      addTask: (task) =>
-        set((state) => ({ tasks: [...state.tasks, task] }), false, 'tasks/addTask'),
-    }),
+        addTask: (task) =>
+          set((state) => ({ tasks: [...state.tasks, task] }), false, 'tasks/addTask'),
+
+        removeTask: (id) =>
+          set(
+            (state) => ({ tasks: state.tasks.filter((task) => task.id !== id) }),
+            false,
+            'tasks/removeTask',
+          ),
+      }),
+      { name: 'tasks-store' },
+    ),
     { name: 'tasks-store' },
   ),
 )

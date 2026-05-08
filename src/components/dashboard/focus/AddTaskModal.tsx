@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { X } from 'lucide-react'
 import { Modal, ModalTitle, ModalClose } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/button'
-import { useFocusStore } from '@/stores/focus-store'
+import { useTasksStore } from '@/stores/tasks-store'
 import { TASK_CATEGORIES } from '@/lib/constants'
 import { toAmPm, defaultTime } from '@/lib/time'
 import { addTaskSchema, type AddTaskFormData } from '@/schemas/addTaskSchema'
@@ -17,7 +17,7 @@ interface AddTaskModalProps {
 }
 
 export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps) {
-  const addTask = useFocusStore.getState().addTask
+  const addTask = useTasksStore((state) => state.addTask)
 
   const {
     register,
@@ -42,6 +42,7 @@ export function AddTaskModal({ isOpen, onClose, defaultDate }: AddTaskModalProps
       time: data.time ? toAmPm(data.time) : '',
       dueDate: defaultDate,
       done: false,
+      flagged: false,
     })
     reset({ title: '', category: undefined, time: defaultTime() })
     onClose()

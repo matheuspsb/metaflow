@@ -10,6 +10,8 @@ import type { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Dashboard | MetaFlow',
 }

@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { TaskRow } from './TaskRow'
 import { AddTaskModal } from './AddTaskModal'
-import { useFocusStore } from '@/stores/focus-store'
+import { useTasksStore } from '@/stores/tasks-store'
 import { useCalendarStore } from '@/stores/calendar-store'
 import { isSameDay, today, toISODate } from '@/lib/calendar'
 
@@ -15,8 +15,8 @@ interface TodaysFocusCardProps {
 }
 
 export function TodaysFocusCard({ className }: TodaysFocusCardProps) {
-  const tasks = useFocusStore((state) => state.tasks)
-  const toggleTask = useFocusStore((state) => state.toggleTask)
+  const tasks = useTasksStore((state) => state.tasks)
+  const toggleTask = useTasksStore((state) => state.toggleTask)
   const selectedDate = useCalendarStore((state) => state.selectedDate)
 
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -49,9 +49,15 @@ export function TodaysFocusCard({ className }: TodaysFocusCardProps) {
           className="divide-border-subtle [&::-webkit-scrollbar-thumb]:bg-brand-500/70 mb-4 flex max-h-47 flex-col divide-y overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full"
           aria-label={`Tasks for ${formatCardTitle(selectedDate)}`}
         >
-          {filteredTasks.map((task) => (
-            <TaskRow key={task.id} task={task} onToggle={toggleTask} />
-          ))}
+          {filteredTasks.length === 0 ? (
+            <li className="text-fg-subtle flex flex-1 items-center justify-center py-6 text-sm">
+              Nenhuma tarefa para este dia.
+            </li>
+          ) : (
+            filteredTasks.map((task) => (
+              <TaskRow key={task.id} task={task} onToggle={toggleTask} />
+            ))
+          )}
         </ul>
 
         <Button

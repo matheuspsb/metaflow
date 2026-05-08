@@ -8,6 +8,7 @@ import { TaskItem } from './TaskItem'
 import { useTasksStore } from '@/stores/tasks-store'
 import { TASK_CATEGORIES } from '@/lib/constants'
 import { TaskCategory } from '@/types/category.types'
+import { today } from '@/lib/calendar'
 
 type FilterTab = 'All' | TaskCategory
 
@@ -21,6 +22,7 @@ export function TasksCard({ className }: TasksCardProps) {
   const tasks = useTasksStore((state) => state.tasks)
   const toggleTask = useTasksStore((state) => state.toggleTask)
   const toggleFlag = useTasksStore((state) => state.toggleFlag)
+  const referenceDate = today()
 
   const [activeTab, setActiveTab] = useState<FilterTab>('All')
 
@@ -63,7 +65,7 @@ export function TasksCard({ className }: TasksCardProps) {
           <li className="text-fg-muted py-8 text-center text-sm">No tasks in this category.</li>
         ) : (
           filteredTasks.map((task) => (
-            <TaskItem key={task.id} task={task} onToggle={toggleTask} onFlag={toggleFlag} />
+            <TaskItem key={task.id} task={task} onToggle={toggleTask} onFlag={toggleFlag} referenceDate={referenceDate} />
           ))
         )}
       </ul>

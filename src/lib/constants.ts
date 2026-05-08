@@ -1,3 +1,4 @@
+import type { Task } from '@/types/task.types'
 import { TaskCategory } from '@/types/category.types'
 import { Briefcase, BookOpen, DollarSign, Heart, User, type LucideIcon } from 'lucide-react'
 
@@ -16,22 +17,17 @@ export const TASK_CATEGORIES: CategoryDef[] = [
   { id: 'Finance', label: 'Finanças', color: 'var(--color-cat-finance)', Icon: DollarSign },
 ]
 
-export const CATEGORY_MAP = Object.fromEntries(
-  TASK_CATEGORIES.map((category) => [category.id, category]),
-) as Record<TaskCategory, CategoryDef>
+export const CATEGORY_MAP = TASK_CATEGORIES.reduce<Record<TaskCategory, CategoryDef>>(
+  (accumulator, category) => ({ ...accumulator, [category.id]: category }),
+  {} as Record<TaskCategory, CategoryDef>,
+)
 
-export const DEFAULT_TASKS: Array<{
-  id: string
-  title: string
-  category: TaskCategory
-  dueDate: string
-  done: boolean
-  flagged: boolean
-}> = [
+export const DEFAULT_TASKS: Task[] = [
   {
     id: '1',
     title: 'Build authentication flow',
     category: 'Work',
+    time: '',
     dueDate: '2026-04-30',
     done: true,
     flagged: true,
@@ -40,6 +36,7 @@ export const DEFAULT_TASKS: Array<{
     id: '2',
     title: 'Design system updates',
     category: 'Work',
+    time: '',
     dueDate: '2026-04-30',
     done: false,
     flagged: true,
@@ -48,6 +45,7 @@ export const DEFAULT_TASKS: Array<{
     id: '3',
     title: 'Go for a 5km run',
     category: 'Health',
+    time: '',
     dueDate: '2026-05-01',
     done: false,
     flagged: false,
@@ -56,6 +54,7 @@ export const DEFAULT_TASKS: Array<{
     id: '4',
     title: 'Read Atomic Habits',
     category: 'Personal',
+    time: '',
     dueDate: '2026-05-01',
     done: false,
     flagged: false,
@@ -64,6 +63,7 @@ export const DEFAULT_TASKS: Array<{
     id: '5',
     title: 'Meditation – 15 minutes',
     category: 'Health',
+    time: '',
     dueDate: '2026-06-19',
     done: false,
     flagged: false,
@@ -72,6 +72,7 @@ export const DEFAULT_TASKS: Array<{
     id: '6',
     title: 'Plan content for launch',
     category: 'Work',
+    time: '',
     dueDate: '2026-06-20',
     done: false,
     flagged: false,

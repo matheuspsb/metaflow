@@ -18,7 +18,8 @@ const EVENT_DATES = Object.keys(EVENTS).map((key) => {
 
 export function CalendarPageClient() {
   const selectedDate = useCalendarStore((state) => state.selectedDate)
-  const { setSelectedDate, goToToday } = useCalendarStore.getState()
+  const setSelectedDate = useCalendarStore((state) => state.setSelectedDate)
+  const goToToday = useCalendarStore((state) => state.goToToday)
   const [view, setView] = useState('Semana')
   const today = new Date()
 
@@ -41,7 +42,7 @@ export function CalendarPageClient() {
           <CategoryCard />
         </Card>
         <Card className="p-4.5">
-          <UpcomingListCard selected={selectedDate} />
+          <UpcomingListCard />
         </Card>
       </div>
 

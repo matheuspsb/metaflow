@@ -1,28 +1,24 @@
 'use client'
 
 import { Check, Flag } from 'lucide-react'
-import type { TaskEntry } from '@/stores/tasks-store'
+import type { Task } from '@/types/task.types'
 import { IconButton } from '@/components/ui/IconButton'
+import { isSameDay, today } from '@/lib/calendar'
 
 interface TaskItemProps {
-  task: TaskEntry
+  task: Task
   onToggle: (id: string) => void
   onFlag: (id: string) => void
+  referenceDate?: Date
 }
 
-function formatDueDate(dueDate: string): { label: string; isToday: boolean } {
-  const today = new Date()
-  const tomorrow = new Date(today)
-  tomorrow.setDate(today.getDate() + 1)
+function formatDueDate(dueDate: string, referenceDate: Date): { label: string; isToday: boolean } {
+  const tomorrow = new Date(referenceDate)
+  tomorrow.setDate(referenceDate.getDate() + 1)
 
   const due = new Date(dueDate + 'T00:00:00')
 
-  const isSameDay = (dateA: Date, dateB: Date) =>
-    dateA.getFullYear() === dateB.getFullYear() &&
-    dateA.getMonth() === dateB.getMonth() &&
-    dateA.getDate() === dateB.getDate()
-
-  if (isSameDay(due, today)) return { label: 'Today', isToday: true }
+  if (isSameDay(due, referenceDate)) return { label: 'Today', isToday: true }
   if (isSameDay(due, tomorrow)) return { label: 'Tomorrow', isToday: false }
 
   return {
@@ -31,8 +27,8 @@ function formatDueDate(dueDate: string): { label: string; isToday: boolean } {
   }
 }
 
-export function TaskItem({ task, onToggle, onFlag }: TaskItemProps) {
-  const { label, isToday } = formatDueDate(task.dueDate)
+export function TaskItem({ task, onToggle, onFlag, referenceDate = today() }: TaskItemProps) {
+  const { label, isToday } = formatDueDate(task.dueDate, referenceDate)
 
   return (
     <li className="group hover:bg-bg-card-hover flex items-center gap-3 rounded-lg px-3 py-3 transition-colors duration-150">

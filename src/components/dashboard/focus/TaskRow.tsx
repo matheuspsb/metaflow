@@ -1,16 +1,9 @@
 'use client'
 
-import { TaskCategory } from '@/types/category.types'
+import type { Task } from '@/types/task.types'
 import { Check } from 'lucide-react'
 
-export interface Task {
-  id: string
-  title: string
-  category: TaskCategory
-  time: string
-  dueDate: string
-  done?: boolean
-}
+export type { Task }
 
 interface TaskRowProps {
   task: Task

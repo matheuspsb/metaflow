@@ -1,10 +1,10 @@
 import { CalendarEvent, EVENTS } from '@/constants/calendar-events'
 import { CATEGORY_MAP, DAY_INITIALS } from '@/lib/constants'
-import { toISODate } from '@/lib/calendar'
+import { toISODate, today } from '@/lib/calendar'
 
-export function UpcomingListCard({ selected }: { selected: Date }) {
+export function UpcomingListCard() {
   const upcoming = Array.from({ length: 7 }, (__unused, dayOffset) => {
-    const date = new Date(selected)
+    const date = today()
     date.setDate(date.getDate() + dayOffset)
     return { date, events: EVENTS[toISODate(date)] }
   })
