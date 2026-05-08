@@ -93,7 +93,7 @@ export function UserDropdown({ name, email, avatar }: UserDropdownProps) {
               'flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-all duration-150',
               loggingOut
                 ? 'text-fg-subtle cursor-wait'
-                : 'text-fg-secondary hover:text-danger cursor-pointer hover:bg-[rgba(239,68,68,0.08)]',
+                : 'text-fg-secondary hover:text-danger hover:bg-danger/8 cursor-pointer',
             )}
           >
             <LogOut className="h-4 w-4 shrink-0" />
