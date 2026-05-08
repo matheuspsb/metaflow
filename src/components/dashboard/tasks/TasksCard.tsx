@@ -60,7 +60,7 @@ export function TasksCard({ className }: TasksCardProps) {
         ))}
       </div>
 
-      <ul className="divide-border-subtle divide-y">
+      <ul className="divide-border-subtle divide-y max-h-66 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border-subtle [&::-webkit-scrollbar-thumb]:rounded-full">
         {filteredTasks.length === 0 ? (
           <li className="text-fg-muted py-8 text-center text-sm">No tasks in this category.</li>
         ) : (
