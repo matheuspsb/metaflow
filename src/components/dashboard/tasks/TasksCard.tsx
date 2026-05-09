@@ -39,12 +39,12 @@ export function TasksCard({ className }: TasksCardProps) {
 
   return (
     <Card title="Tarefas" action={headerActions} className={className}>
-      <div className="bg-bg-input mb-4 flex items-center gap-1 rounded-lg p-1">
+      <div className="bg-bg-input mb-4 flex items-center gap-1 overflow-x-auto rounded-lg p-1 [&::-webkit-scrollbar]:hidden">
         {TABS.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all duration-150 ${
+            className={`shrink-0 rounded-md px-3 py-1.5 text-sm font-medium transition-all duration-150 ${
               activeTab === tab
                 ? 'bg-brand-500 shadow-brand-glow text-white'
                 : 'text-fg-muted hover:text-fg-primary'
